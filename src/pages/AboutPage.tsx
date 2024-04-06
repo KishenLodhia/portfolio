@@ -1,3 +1,4 @@
+import Heading from "@/components/Heading";
 import Navbar from "@/components/Navbar";
 import Quote from "@/components/Quote";
 
@@ -44,16 +45,14 @@ const AboutPage = () => {
         <div>
           {data.map((item) => (
             <div key={item.title} className="py-10">
-              <div className="text-3xl">{item.title}</div>
-              <hr className="h-1 w-full" />
+              <Heading heading={item.title} />
               <p>{item.content}</p>
             </div>
           ))}
         </div>
 
         <div className="py-10">
-          <div className="text-3xl">Education</div>
-          <hr className="h-1 w-full" />
+          <Heading heading="Education" />
           <ul className="list-disc pl-5">
             <li>Bachelor of Software Engineering, The University of the South Pacific (Class of 2021)</li>
             <li>
@@ -62,8 +61,7 @@ const AboutPage = () => {
           </ul>
         </div>
         <div className="py-10 w-full">
-          <div className="text-3xl">Inspirational quote</div>
-          <hr className="h-1 w-full" />
+          <Heading heading="Inspirational Quote" />
           <Quote />
         </div>
 

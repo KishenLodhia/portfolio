@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage.tsx";
 import TestPage from "./pages/TestPage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
+import ResumePage from "./pages/ResumePage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
   {
     path: "/about",
     element: <AboutPage />,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/resume",
+    element: <ResumePage />,
     errorElement: <NotFoundPage />,
   },
 
