@@ -49,7 +49,7 @@ const components: {
 
 export const Navbar = () => {
   return (
-    <div className="flex flex-row p-5 items-center justify-center gap-1">
+    <div className="md:flex flex-row p-5 items-center justify-center gap-1 hidden">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem className="hover:bg-accent hover:rounded px-3 py-2">
