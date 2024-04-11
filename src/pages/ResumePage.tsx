@@ -35,6 +35,22 @@ import {
 import ContentHeading from "@/components/ContentHeading";
 import ResumeContentDiv from "@/components/ResumeContentDiv";
 import { TbApi } from "react-icons/tb";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import weatherAppImage from "@/assets/weather-app.gif";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import MdBlob from "@/components/MdBlob";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { CgMenuRight } from "react-icons/cg";
 
 const SummarySection = {
   title: "Summary",
@@ -329,14 +345,58 @@ const EducationSection = [
   },
 ];
 
+const HighlightsSection = [
+  {
+    title: "Featured on USP",
+    closedDescription: "Official USP LinkedIn page",
+    openDescription: "I was featured on the university LinkedIn page",
+    imageLink:
+      "https://media.licdn.com/dms/image/C4D22AQHiZjMQiAZckA/feedshare-shrink_1280/0/1655247780944?e=1715817600&v=beta&t=WkR63bPS0jMLimifN0T2khkfzLJYG2taPcA2p_-B4MA",
+  },
+  {
+    title: "Gold Medal Winner",
+    closedDescription: "Software Engineering Gold Medalist",
+    openDescription: "Gold Medal for Most outstanding Software Engineering graduate",
+    imageLink:
+      "https://media.licdn.com/dms/image/C4D2DAQEVmGDKWNasgg/profile-treasury-image-shrink_800_800/0/1679470663078?e=1713445200&v=beta&t=62A1_bqragAIGL9II9gn-6rWGGa7Xo_zfhoz2VwHYO0",
+  },
+
+  {
+    title: "Cafeteria App Project",
+    closedDescription: "My first large software project",
+    openDescription:
+      "CS415: Advanced Software Engineering project. This is a very deary project to me as it was my first large scale project. In this project, we designed a system for the university staff/students to order online from the cafeteria. 3 releases were made: (1) Web Application with limited features. (2) Web Application with all features. (3) Mobile App with full features. The image below depicts the UI for the app.",
+    imageLink:
+      "https://media.licdn.com/dms/image/D562DAQEvxQ-VQvRy8w/profile-treasury-image-shrink_800_800/0/1685623048517?e=1713445200&v=beta&t=eMFNymJtPDBK7kwYV0fjOWFtNc1lpoYUHzmzp3hhExI",
+  },
+  {
+    title: "USP Mobile App",
+    closedDescription: "University mobile app project",
+    openDescription:
+      "A comprehensive mobile app, web portal, and API were developed to serve the needs of over 20,000 students, employing technologies like Flutter, Laravel, Firebase, MySQL, Node.JS, and RESTful APIs within an Agile (Scrum) methodology. Emphasizing intuitive UI/UX, offline functionality, and stringent security measures, the solution ensures an enjoyable user experience. Features include dynamic display of research and innovation data, access to university disciplines, emergency services integration for quick assistance, a digital notice board for announcements and trading, COVID-19 updates, and app notifications for staff-student communication via Firebase Cloud Messaging.",
+    imageLink:
+      "https://media.licdn.com/dms/image/D562DAQGQFFL_ql08FQ/profile-treasury-image-shrink_800_800/0/1685623731135?e=1713448800&v=beta&t=EiwjXtaJemwRclytNKwyg7KM6kGDHUy7GsPQjY0gw0w",
+  },
+  {
+    title: "Weather App Project",
+    closedDescription: "Minimal weather app",
+    openDescription:
+      "This app boasts a clean and minimalistic interface, offering real-time weather updates fetched from weatherapi.com for accurate information. It automatically detects users' locations, delivering precise weather details at their fingertips. Whether users are weather enthusiasts or simply curious about forecasts, the app provides a user-friendly experience. Developed entirely using Flutter, this project allowed me to hone my mobile app development skills and delve into API integrations. You can check out the code on my GitHub. Stay tuned for future enhancements, including tailored insights, customizable weather widgets, and alert notifications for severe weather conditions. Thanks to the supportive Flutter community, this project became a reality.",
+    imageLink: weatherAppImage,
+  },
+];
+
 const ResumePage = () => {
   return (
     <>
       <Navbar />
       <div className="flex flex-col items-start justify-start w-[90%] md:w-[70%]  m-auto mt-5">
-        <div className="absolute top-[30%] left-[40%] w-[400px] h-[400px] bg-purple-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal hidden md:block"></div>
+        <MdBlob color="bg-purple-500" />
+        <MdBlob color="bg-orange-500" />
+        <MdBlob color="bg-blue-500" />
+        {/* <div className="absolute top-[30%] left-[40%] w-[400px] h-[400px] bg-purple-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal hidden md:block"></div>
         <div className="absolute top-[10%] left-[55%] w-[300px] h-[300px] bg-orange-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal animation-delay-4000 hidden md:block"></div>
-        <div className="absolute top-[40%] left-[60%] w-[350px] h-[350px] bg-blue-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal animation-delay-3000 hidden md:block"></div>
+        <div className="absolute top-[40%] left-[60%] w-[350px] h-[350px] bg-blue-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal animation-delay-3000 hidden md:block"></div> */}
 
         {/* Summary */}
         <ResumeContentDiv heading={SummarySection.title}>
@@ -364,6 +424,9 @@ const ResumePage = () => {
         </ResumeContentDiv>
 
         <ResumeContentDiv className="py-5" heading="Experience">
+          <MdBlob color="bg-green-500" />
+          <MdBlob color="bg-red-500" />
+          <MdBlob color="bg-slate-500" />
           {ExperienceSection.map((experienceItem) => (
             <div key={experienceItem.company}>
               <h2 className="text-2xl pt-3 text-slate-500 font-semibold">{experienceItem.role}</h2>
@@ -386,6 +449,9 @@ const ResumePage = () => {
         </ResumeContentDiv>
 
         <ResumeContentDiv heading="Education">
+          <MdBlob color="bg-purple-500" />
+          <MdBlob color="bg-orange-500" />
+
           {EducationSection.map((item) => (
             <div key={item.start}>
               <h2 className="text-2xl pt-3 text-slate-500 font-semibold">
@@ -415,6 +481,44 @@ const ResumePage = () => {
               ))}
             </div>
           ))}
+        </ResumeContentDiv>
+
+        <ResumeContentDiv className="py-5" heading="Highlights">
+          <div className="flex flex-wrap gap-2 p-3">
+            {HighlightsSection.map((item) => (
+              <div key={item.title}>
+                <Dialog>
+                  <DialogTrigger>
+                    <Card className="bg-clip-border overflow-hidden h-96 md:opacity-45 hover:opacity-100 transition duration-300">
+                      <CardHeader>
+                        <CardTitle>{item.title}</CardTitle>
+                        <CardDescription>{item.closedDescription}</CardDescription>
+                      </CardHeader>
+                      <div className="h-72 w-72 bg-cover overflow-hidden rounded-md ">
+                        <img src={item.imageLink} alt="Featured image" className="h-full w-full object-cover" />
+                      </div>
+                    </Card>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>{item.title}</DialogTitle>
+                      <DialogDescription>{item.openDescription}</DialogDescription>
+                    </DialogHeader>
+                    <div className="h-full rounded-md overflow-hidden touch-pinch-zoom">
+                      <img src={item.imageLink} alt="Featured image" className="h-full w-full object-cover" />
+                    </div>
+                    <DialogFooter className="sm:justify-start">
+                      <DialogClose asChild>
+                        <Button type="button" variant="secondary">
+                          Close
+                        </Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            ))}
+          </div>
         </ResumeContentDiv>
       </div>
     </>
