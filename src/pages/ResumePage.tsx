@@ -49,8 +49,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import MdBlob from "@/components/MdBlob";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { CgMenuRight } from "react-icons/cg";
 
 const SummarySection = {
   title: "Summary",
