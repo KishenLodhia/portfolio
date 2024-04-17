@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import GitHubCommitAreaChart from "@/components/GithubCommitAreaChart";
 
 type Repo = {
   id: number;
@@ -18,7 +19,7 @@ type Repo = {
   updated_at: string;
   languages_url: string;
   language: string;
-  private: string;
+  private: boolean;
 };
 
 type User = {
@@ -49,15 +50,16 @@ const PortfolioPage = () => {
 
         const userData: User = await response.json();
         setUser(userData);
+        return userData;
       } catch (error) {
         console.error("Error fetching user information:", error);
       }
     };
 
-    const fetchRepos = async () => {
+    const fetchRepos = async (user: User) => {
       try {
         const token = import.meta.env.VITE_GITHUB_PAT;
-        const response = await fetch("https://api.github.com/users/KishenLodhia/repos", {
+        const response = await fetch(`https://api.github.com/search/repositories?q=user:${user?.login}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -67,15 +69,22 @@ const PortfolioPage = () => {
           throw new Error("Failed to fetch repositories");
         }
 
-        const data: Repo[] = await response.json();
-        setRepos(data);
+        const data: { items: Repo[] } = await response.json();
+        setRepos(data.items);
+        // setRepos(data);
       } catch (error) {
         console.error("Error fetching repositories:", error);
       }
     };
 
-    fetchUser();
-    fetchRepos();
+    async function fetchData() {
+      const user = await fetchUser();
+      if (user) {
+        await fetchRepos(user);
+      }
+    }
+
+    fetchData();
   }, []);
 
   return (
@@ -90,7 +99,7 @@ const PortfolioPage = () => {
         {user ? (
           <div>
             <div>
-              <Card>
+              <Card className="flex flex-col items-center justify-center">
                 <CardContent className="flex flex-wrap items-center justify-center">
                   <CardHeader className="flex items-center justify-center">
                     <img src={user.avatar_url} alt="User Avatar" className="rounded-full h-24" />
@@ -99,6 +108,9 @@ const PortfolioPage = () => {
                     <CardTitle>{user.name}</CardTitle>
                     <CardDescription>Github Portfolio</CardDescription>
                   </CardHeader>
+                </CardContent>
+                <CardContent>
+                  <GitHubCommitAreaChart userLogin={user.login} />
                 </CardContent>
               </Card>
 
@@ -126,11 +138,17 @@ const PortfolioPage = () => {
                           <Badge variant="secondary">{repo.private.toString() == "false" ? "PUBLIC" : "PRIVATE"}</Badge>
                         </TableCell>
                         <TableCell>
-                          <Button>
-                            <a href={repo.html_url} target="_blank">
-                              Visit Repo
-                            </a>
-                          </Button>
+                          {repo.private == false ? (
+                            <Button className="w-32">
+                              <a href={repo.html_url} target="_blank">
+                                Visit Repo
+                              </a>
+                            </Button>
+                          ) : (
+                            <Button disabled={true} className="w-32">
+                              Private Repo
+                            </Button>
+                          )}
                         </TableCell>
                       </TableRow>
                     ))}

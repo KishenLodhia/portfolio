@@ -1,11 +1,12 @@
 import { Navbar } from "../components/Navbar";
 import LargeBadge from "@/components/LargeBadge";
-import { FaJs, FaGithub } from "react-icons/fa";
+import { FaJs, FaGithub, FaPeopleArrows, FaFigma } from "react-icons/fa";
 import { SiHtml5, SiCss3, SiVite } from "react-icons/si";
-import { RiFlutterFill, RiReactjsFill } from "react-icons/ri";
+import { RiEmpathizeFill, RiFlutterFill, RiReactjsFill } from "react-icons/ri";
 import { TbSql, TbApi, TbBrandTailwind } from "react-icons/tb";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import HomePageDrawer from "@/components/HomePageDrawer";
+import { IoDocumentTextSharp } from "react-icons/io5";
 
 type HighlightsCard = {
   title: string;
@@ -54,36 +55,18 @@ const HomePage = () => {
         { name: "Tailwind CSS", icon: <TbBrandTailwind /> },
       ],
     },
-
-    // {
-    //   title: "Web Development",
-    //   subtitle: "QUT Project",
-    //   description: "Building a personal portfolio project",
-    //   technologies: webDevProjectStack,
-    // },
-    // {
-    //   title: "Software Developer",
-    //   subtitle: "@ LifeShape Clinic",
-    //   description: "Currently building a platform that provides content to support weightloss medications",
-    //   technologies: evioleWebStack,
-    // },
+    {
+      title: "UX Research",
+      subtitle: "IFN591",
+      description: "Conduct a UX research for the a real world scenario",
+      technologies: [
+        { name: "Interviews", icon: <FaPeopleArrows /> },
+        { name: "Documentation", icon: <IoDocumentTextSharp /> },
+        { name: "UI Design", icon: <FaFigma /> },
+        { name: "User Experience Methods", icon: <RiEmpathizeFill /> },
+      ],
+    },
   ];
-
-  // const programmingLanguagesAndFrameworks = [
-  //   { name: "JavaScript", icon: <FaJs /> },
-  //   { name: "Python", icon: <FaPython /> },
-  //   { name: "Flutter", icon: <RiFlutterFill /> },
-  //   { name: "C#", icon: <TbBrandCSharp /> },
-  //   { name: "PHP", icon: <FaPhp /> },
-  //   { name: "TypeScript", icon: <SiTypescript /> },
-  //   { name: "SQL", icon: <TbSql /> },
-  //   { name: "HTML", icon: <SiHtml5 /> },
-  //   { name: "CSS", icon: <SiCss3 /> },
-  //   { name: "React", icon: <FaReact /> },
-  //   { name: "Node.js", icon: <FaNodeJs /> },
-  //   { name: "Express.js", icon: <SiExpress /> }, // Express.js icon not found in react-icons
-  //   { name: "Laravel", icon: <FaLaravel /> },
-  // ];
 
   return (
     <div className="m-auto w-[80%]">
