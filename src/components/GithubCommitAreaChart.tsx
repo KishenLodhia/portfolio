@@ -104,6 +104,7 @@ const GitHubCommitCumulativeChart = ({ userLogin }: GitHubCommitCumulativeChartP
             stroke="#82ca9d"
             strokeWidth={1.3}
             dot={{ stroke: "#82ca9d", fill: "#ffffff", r: 2 }}
+            animationDuration={2000}
           />
         </LineChart>
       )}
