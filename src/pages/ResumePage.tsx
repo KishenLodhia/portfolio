@@ -356,7 +356,7 @@ const HighlightsSection = [
     closedDescription: "Software Engineering Gold Medalist",
     openDescription: "Gold Medal for Most outstanding Software Engineering graduate",
     imageLink:
-      "https://media.licdn.com/dms/image/C4D2DAQEVmGDKWNasgg/profile-treasury-image-shrink_800_800/0/1679470663078?e=1713445200&v=beta&t=62A1_bqragAIGL9II9gn-6rWGGa7Xo_zfhoz2VwHYO0",
+      "https://media.licdn.com/dms/image/C4D2DAQEVmGDKWNasgg/profile-treasury-image-shrink_800_800/0/1679470663078?e=1714460400&v=beta&t=e9HlaLXM-yHqnp7lDMYeIZv7a2GvD0aMDTRiTwYa0so",
   },
 
   {
@@ -365,7 +365,7 @@ const HighlightsSection = [
     openDescription:
       "CS415: Advanced Software Engineering project. This is a very deary project to me as it was my first large scale project. In this project, we designed a system for the university staff/students to order online from the cafeteria. 3 releases were made: (1) Web Application with limited features. (2) Web Application with all features. (3) Mobile App with full features. The image below depicts the UI for the app.",
     imageLink:
-      "https://media.licdn.com/dms/image/D562DAQEvxQ-VQvRy8w/profile-treasury-image-shrink_800_800/0/1685623048517?e=1713445200&v=beta&t=eMFNymJtPDBK7kwYV0fjOWFtNc1lpoYUHzmzp3hhExI",
+      "https://media.licdn.com/dms/image/D562DAQEvxQ-VQvRy8w/profile-treasury-image-shrink_800_800/0/1685623048517?e=1714460400&v=beta&t=Jc2YpiTPTUFZYV2aQTFQWYrEGV8cwbnXghx8CYLsCfo",
   },
   {
     title: "USP Mobile App",
@@ -373,7 +373,7 @@ const HighlightsSection = [
     openDescription:
       "A comprehensive mobile app, web portal, and API were developed to serve the needs of over 20,000 students, employing technologies like Flutter, Laravel, Firebase, MySQL, Node.JS, and RESTful APIs within an Agile (Scrum) methodology. Emphasizing intuitive UI/UX, offline functionality, and stringent security measures, the solution ensures an enjoyable user experience. Features include dynamic display of research and innovation data, access to university disciplines, emergency services integration for quick assistance, a digital notice board for announcements and trading, COVID-19 updates, and app notifications for staff-student communication via Firebase Cloud Messaging.",
     imageLink:
-      "https://media.licdn.com/dms/image/D562DAQGQFFL_ql08FQ/profile-treasury-image-shrink_800_800/0/1685623731135?e=1713448800&v=beta&t=EiwjXtaJemwRclytNKwyg7KM6kGDHUy7GsPQjY0gw0w",
+      "https://media.licdn.com/dms/image/D562DAQGQFFL_ql08FQ/profile-treasury-image-shrink_800_800/0/1685623731135?e=1714460400&v=beta&t=ENFVKtc3jOTQQ-2fn14Q7afuvD8rcRAA4SzuQdplYzI",
   },
   {
     title: "Weather App Project",

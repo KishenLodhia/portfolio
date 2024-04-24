@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { LineChart, Line, XAxis, Tooltip, Legend } from "recharts";
-// import { Skeleton } from "./ui/skeleton";
-// import { Card } from "./ui/card";
+import { LineChart, Line, XAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 interface Commit {
   commit: {
@@ -16,7 +14,6 @@ interface GitHubCommitCumulativeChartProps {
 }
 
 const GitHubCommitCumulativeChart = ({ userLogin }: GitHubCommitCumulativeChartProps) => {
-  const [commitData, setCommitData] = useState<Commit[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [transformedData, setTransformedData] = useState<{ date: string; commits: number }[]>([]);
   const token = import.meta.env.VITE_GITHUB_PAT;
@@ -41,18 +38,18 @@ const GitHubCommitCumulativeChart = ({ userLogin }: GitHubCommitCumulativeChartP
         Promise.all(promises)
           .then((allCommits) => {
             const aggregatedCommits = allCommits.flat() as Commit[];
-            setCommitData(aggregatedCommits);
+
             setTransformedData(transformData(aggregatedCommits));
-            setIsLoading(false); // Set loading to false here, after all data has been fetched and processed
+            setIsLoading(false);
           })
           .catch((error) => {
             console.error("Error fetching commit data:", error);
-            setIsLoading(false); // Also set loading to false here, in case there's an error
+            setIsLoading(false);
           });
       })
       .catch((error) => {
         console.error("Error fetching repositories:", error);
-        setIsLoading(false); // And here, in case there's an error
+        setIsLoading(false);
       });
   }, []);
 
@@ -83,30 +80,38 @@ const GitHubCommitCumulativeChart = ({ userLogin }: GitHubCommitCumulativeChartP
     return cumulativeData;
   };
   return (
-    <div>
+    <div className="w-[350px] md:w-[600px] h-[300px] flex items-center justify-center">
       {isLoading ? (
         <div className="flex items-center justify-center h-[300px] w-[600px]"></div>
       ) : (
-        <LineChart
-          width={600}
-          height={300}
-          data={transformedData}
-          margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
-        >
-          <XAxis dataKey="date" tick={{ color: "#fff", fontSize: 12 }} />
-          <Tooltip
-            contentStyle={{ backgroundColor: "#333", border: "none", borderRadius: "5px", color: "#fff", fontSize: 12 }}
-          />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="commits"
-            stroke="#82ca9d"
-            strokeWidth={1.3}
-            dot={{ stroke: "#82ca9d", fill: "#ffffff", r: 2 }}
-            animationDuration={2000}
-          />
-        </LineChart>
+        <ResponsiveContainer width="90%" height="80%">
+          <LineChart
+            // width={600}
+            // height={300}
+            data={transformedData}
+            // margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
+          >
+            <XAxis dataKey="date" tick={{ color: "#fff", fontSize: 12 }} />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "#333",
+                border: "none",
+                borderRadius: "5px",
+                color: "#fff",
+                fontSize: 12,
+              }}
+            />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="commits"
+              stroke="#82ca9d"
+              strokeWidth={1.3}
+              dot={{ stroke: "#82ca9d", fill: "#ffffff", r: 2 }}
+              animationDuration={4000}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       )}
     </div>
   );

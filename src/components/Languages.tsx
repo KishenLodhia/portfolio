@@ -33,14 +33,15 @@ const Languages = ({ repoName, userName }: LanguagesProps) => {
   }, []);
 
   return (
-    <div className="flex flex-wrap gap-1">
+    <div className="p-0">
       {loading ? (
         <div>loading...</div>
       ) : (
         languages && (
-          <div className="flex flex-wrap gap-1">
+          <div className="">
             {Object.entries(languages).map(([language, lines]) => (
-              <Badge key={language} variant="secondary">
+              // <div className="text-xs px-1 py-0 bg-slate-500 opacity-50 rounded-3xl text-nowrap">{language}</div>
+              <Badge className="text-xs text-nowrap" key={language} variant="secondary">
                 {language}
               </Badge>
             ))}
