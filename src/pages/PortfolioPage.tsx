@@ -69,6 +69,10 @@ const PortfolioPage = () => {
   const [searchNews, setSearchNews] = useState("Programming");
   const [news, setNews] = useState<News>();
 
+  const [newsError, setNewsError] = useState(null);
+  const [userError, setUserError] = useState(null);
+  const [reposError, setReposError] = useState(null);
+
   // Array of languages
   const languages = [
     "Web Development",
@@ -123,8 +127,9 @@ const PortfolioPage = () => {
         }
         const data = await response.json();
         setNews(data);
-        console.log(data);
-      } catch (error) {}
+      } catch (error: any) {
+        setNewsError(error.message);
+      }
     };
     fetchNews();
   }, [searchNews]);
@@ -147,8 +152,8 @@ const PortfolioPage = () => {
         const userData: User = await response.json();
         setUser(userData);
         return userData;
-      } catch (error) {
-        console.error("Error fetching user information:", error);
+      } catch (error: any) {
+        setUserError(error.message);
       }
     };
 
@@ -168,8 +173,8 @@ const PortfolioPage = () => {
         const data: { items: Repo[] } = await response.json();
         setRepos(data.items);
         // setRepos(data);
-      } catch (error) {
-        console.error("Error fetching repositories:", error);
+      } catch (error: any) {
+        setReposError(error.message);
       }
     };
 
@@ -191,6 +196,19 @@ const PortfolioPage = () => {
   const filteredRepos = repos.filter((repo) =>
     Object.values(repo).some((val) => String(val).toLowerCase().includes(searchTerm.toLowerCase()))
   );
+
+  // Error checks
+  if (newsError) {
+    return <div>Error fetching news: {newsError}</div>;
+  }
+
+  if (userError) {
+    return <div>Error fetching user information: {userError}</div>;
+  }
+
+  if (reposError) {
+    return <div>Error fetching repositories: {reposError}</div>;
+  }
 
   return (
     <div className="flex flex-col w-[90%] md:w-[70%] m-auto">
@@ -241,6 +259,7 @@ const PortfolioPage = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+
           <div className="flex items-center justify-center">
             <Carousel className="w-[80%]">
               <CarouselContent>
