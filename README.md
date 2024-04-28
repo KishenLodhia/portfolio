@@ -17,11 +17,10 @@ This project is an assessment item for the purposes of an extension in the field
 
 ## Technical Details
 
-- **Programming Language:** JavaScript (ES6 or higher)
-- **Frameworks and Libraries:** React, React Router, third-party components
+- **Programming Language:** JavaScript
+- **Frameworks and Libraries:** React, React Router, Vite, third-party components
 - **Development Tools:** VS Code, Git, web browser with developer tools
-- **Version Control:** Git repository with meaningful commits and .gitignore file
-- **Documentation:** README file with project purpose, contribution guidelines, features, dependencies, architecture overview, issue reporting instructions, and chosen licence.
+- **Version Control:** Git, GitHub
 
 ## Contributing
 
