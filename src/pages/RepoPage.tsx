@@ -75,7 +75,7 @@ const RepoPage = () => {
   }, [userName, repoName]);
 
   if (!repo) {
-    return <div>Loading...</div>;
+    return <div className="flex items-center justify-center">Loading...</div>;
   }
 
   return (
