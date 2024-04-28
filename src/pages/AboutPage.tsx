@@ -1,13 +1,16 @@
-import Heading from "@/components/Heading";
-import Navbar from "@/components/Navbar";
-import Quote from "@/components/Quote";
+// Importing necessary components and hooks
+import ContentDiv from "@/components/ContentDiv";
+import { useEffect } from "react";
 
+// Defining the AboutContent type
 type AboutContent = {
   title: string;
   content: string;
 };
 
+// AboutPage component
 const AboutPage = () => {
+  // Array of AboutContent objects
   let data: AboutContent[] = [
     {
       title: "About",
@@ -33,41 +36,40 @@ const AboutPage = () => {
     `,
     },
   ];
+  // Effect hook to set the document title
+  useEffect(() => {
+    document.title = "Kishen | About";
+  }, []);
 
   return (
-    <>
-      <Navbar />
-      <div className="flex flex-col items-start justify-start w-[70%] m-auto mt-5">
-        <div className="absolute top-[30%] left-[40%] w-[400px] h-[400px] bg-purple-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal hidden md:block"></div>
-        <div className="absolute top-[10%] left-[55%] w-[300px] h-[300px] bg-orange-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal animation-delay-4000 hidden md:block"></div>
-        <div className="absolute top-[40%] left-[60%] w-[350px] h-[350px] bg-blue-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal animation-delay-3000 hidden md:block"></div>
+    <div className="flex flex-col items-start justify-start w-[90%] md:w-[70%] m-auto mt-5">
+      <div className="absolute top-[30%] left-[40%] w-[400px] h-[400px] bg-purple-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal hidden md:block"></div>
+      <div className="absolute top-[10%] left-[55%] w-[300px] h-[300px] bg-orange-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal animation-delay-4000 hidden md:block"></div>
+      <div className="absolute top-[40%] left-[60%] w-[350px] h-[350px] bg-blue-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal animation-delay-3000 hidden md:block"></div>
 
-        <div>
-          {data.map((item) => (
-            <div key={item.title} className="py-10">
-              <Heading heading={item.title} />
+      <div>
+        {data.map((item) => (
+          <div key={item.title} className="py-10">
+            <ContentDiv heading={item.title}>
               <p>{item.content}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="py-10">
-          <Heading heading="Education" />
-          <ul className="list-disc pl-5">
-            <li>Bachelor of Software Engineering, The University of the South Pacific (Class of 2021)</li>
-            <li>
-              Master of IT (Computer Science), Queensland University of Technology (Expected Graduattion: July 2024)
-            </li>
-          </ul>
-        </div>
-        <div className="py-10 w-full">
-          <Heading heading="Inspirational Quote" />
-          <Quote />
-        </div>
-
-        <div className="py-10"></div>
+            </ContentDiv>
+          </div>
+        ))}
       </div>
-    </>
+
+      <div className="py-10">
+        <ContentDiv heading="Education">
+          <ul className="list-disc pl-5">
+            <li>
+              Master of IT (Computer Science), Queensland University of Technology (Expected Graduation: July 2024)
+            </li>
+            <li>Bachelor of Software Engineering, The University of the South Pacific (Class of 2021)</li>
+          </ul>
+        </ContentDiv>
+      </div>
+
+      <div className="py-10"></div>
+    </div>
   );
 };
 

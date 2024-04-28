@@ -1,3 +1,4 @@
+// Importing necessary components and icons
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -6,7 +7,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-
 import { FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { ReactNode } from "react";
@@ -16,6 +16,7 @@ import { ModeToggle } from "./ui/mode-toggle";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { CgMenuRight } from "react-icons/cg";
 
+// Defining the social media links and their details
 const components: {
   title: string;
   href: string;
@@ -24,19 +25,19 @@ const components: {
 }[] = [
   {
     title: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/in/kishenlodhia/",
     description: "View my LinkedIn profile!",
     icon: FaLinkedinIn,
   },
   {
     title: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/kishen_lodhia/",
     description: "Follow me on Instagram",
     icon: FaInstagram,
   },
   {
     title: "GitHub",
-    href: "#",
+    href: "https://github.com/KishenLodhia",
     description: "Check out my Github repos!",
     icon: FaGithub,
   },
@@ -48,12 +49,15 @@ const components: {
   },
 ];
 
+// Navbar component
 export const Navbar = () => {
   return (
     <>
+      {/* Desktop Navbar */}
       <div className="md:flex flex-row p-5 items-center justify-center gap-1 hidden">
         <NavigationMenu>
           <NavigationMenuList>
+            {/* Navigation Menu Items */}
             <NavigationMenuItem className="hover:bg-accent hover:rounded px-3 py-2">
               <NavigationMenuLink href="/">Home</NavigationMenuLink>
             </NavigationMenuItem>
@@ -70,6 +74,7 @@ export const Navbar = () => {
               <NavigationMenuLink href="/portfolio">Portfolio</NavigationMenuLink>
             </NavigationMenuItem>
 
+            {/* Social Media Links */}
             <NavigationMenuItem>
               <NavigationMenuTrigger>Social</NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -90,6 +95,8 @@ export const Navbar = () => {
         </NavigationMenu>
         <ModeToggle />
       </div>
+
+      {/* Mobile Navbar */}
       <div className="flex items-center justify-end sm:block md:hidden">
         <Sheet>
           <SheetTrigger>
@@ -128,6 +135,7 @@ export const Navbar = () => {
   );
 };
 
+// MenuItem component
 interface MenuItemProps {
   title: string;
   description: string;

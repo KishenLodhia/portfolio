@@ -1,13 +1,15 @@
+// Rendering the application into the root element
 import Heading from "./Heading";
 
-interface ResumeContentDivProps extends React.HTMLAttributes<HTMLDivElement> {
+// Defining the props for the ContentDiv component
+interface ContentDivProps extends React.HTMLAttributes<HTMLDivElement> {
   heading: string;
 }
 
-const ResumeContentDiv = ({ children, heading, ...props }: ResumeContentDivProps) => {
+// ContentDiv component
+const ContentDiv = ({ children, heading, ...props }: ContentDivProps) => {
   return (
     <div {...props}>
-      {/* <Heading heading={heading} /> */}
       <div className="flex flex-row py-5 px-1 relative">
         <div className="border-l-2 rounded-sm mt-3 mr-4 border-lime-500 "></div>
         <div>
@@ -20,4 +22,4 @@ const ResumeContentDiv = ({ children, heading, ...props }: ResumeContentDivProps
   );
 };
 
-export default ResumeContentDiv;
+export default ContentDiv;

@@ -15,10 +15,12 @@ const MdBlob: React.FC<MdBlobProps> = ({
   top,
   left,
 }) => {
+  // Arrays of possible top positions, left positions, and delays
   const tops = ["10%", "20%", "30%", "40%", "50%"];
   const lefts = ["10%", "20%", "30%", "40%", "50%"];
   const delays = [2000, 3000, 4000];
 
+  // Randomly selecting a top position, left position, and delay
   const blobTop = top ?? tops[Math.floor(Math.random() * tops.length)];
   const blobLeft = left ?? lefts[Math.floor(Math.random() * lefts.length)];
   const delay = delays[Math.floor(Math.random() * delays.length)];

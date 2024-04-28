@@ -1,10 +1,9 @@
+// Effect hook to perform side effects
 import MdBlob from "@/components/MdBlob";
-import Navbar from "@/components/Navbar";
 import Languages from "@/components/Languages";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SetStateAction, useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import GitHubCommitAreaChart from "@/components/GithubCommitAreaChart";
@@ -13,12 +12,13 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useNavigate } from "react-router-dom";
 
+// Effect hook to perform side effects
 type Repo = {
   id: number;
   name: string;
@@ -32,6 +32,7 @@ type Repo = {
   private: boolean;
 };
 
+// Effect hook to perform side effects
 type User = {
   login: string;
   name: string;
@@ -40,12 +41,14 @@ type User = {
   twitter_username: string | null;
 };
 
+// Effect hook to perform side effects
 type News = {
   status: string;
   totalResults: number;
   articles: Article[];
 };
 
+// Defining the Article type
 type Article = {
   source: string;
   author: string;
@@ -57,13 +60,16 @@ type Article = {
   content: string;
 };
 
+// Main component
 const PortfolioPage = () => {
+  // State variables
   const [repos, setRepos] = useState<Repo[]>([]);
   const [user, setUser] = useState<User | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchNews, setSearchNews] = useState("Programming");
   const [news, setNews] = useState<News>();
 
+  // Array of languages
   const languages = [
     "Web Development",
     "Database",
@@ -77,6 +83,27 @@ const PortfolioPage = () => {
     "Machine Learning",
   ];
 
+  const navigate = useNavigate(); // For navigation
+
+  // Function to handle card click
+  const handleCardClick = (user: User | null, repo: Repo) => {
+    // if (repo.private) {
+    //   return toast("Not allowed", {
+    //     description: "Cannot view private repos",
+    //   });
+    // }
+    if (repo.name && user) {
+      const repoName = repo.name;
+      navigate(`/portfolio/${repoName}`, { state: { userName: user.login, repoName: repoName } });
+    }
+  };
+
+  // Effect hook to set document title
+  useEffect(() => {
+    document.title = "Kishen | Portfolio";
+  }, []);
+
+  // Effect hook to fetch news
   useEffect(() => {
     const fetchNews = async () => {
       try {
@@ -102,6 +129,7 @@ const PortfolioPage = () => {
     fetchNews();
   }, [searchNews]);
 
+  // Effect hook to fetch user and repos
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -155,6 +183,7 @@ const PortfolioPage = () => {
     fetchData();
   }, []);
 
+  // Function to handle search change
   const handleSearchChange = (event: { target: { value: SetStateAction<string> } }) => {
     setSearchTerm(event.target.value);
   };
@@ -165,12 +194,6 @@ const PortfolioPage = () => {
 
   return (
     <div className="flex flex-col w-[90%] md:w-[70%] m-auto">
-      {/* <MdBlob color="bg-green-500" />
-      <MdBlob color="bg-red-500" />
-      <MdBlob color="bg-blue-500" /> */}
-
-      <Navbar />
-
       <div>
         {user ? (
           <div>
@@ -188,47 +211,6 @@ const PortfolioPage = () => {
                 <GitHubCommitAreaChart userLogin={user.login} />
               </CardContent>
             </Card>
-
-            {/* <Table className="my-5">
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Created</TableHead>
-                  <TableHead>Languages</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Visit</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredRepos
-                  .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-                  .map((repo) => (
-                    <TableRow key={repo.id}>
-                      <TableCell>{repo.name.toUpperCase()}</TableCell>
-                      <TableCell>{new Date(repo.created_at).toLocaleDateString()}</TableCell>
-                      <TableCell>
-                        <Languages userName={"KishenLodhia"} repoName={repo.name} />
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant="secondary">{repo.private.toString() == "false" ? "PUBLIC" : "PRIVATE"}</Badge>
-                      </TableCell>
-                      <TableCell>
-                        {repo.private == false ? (
-                          <Button className="w-32">
-                            <a href={repo.html_url} target="_blank">
-                              Visit Repo
-                            </a>
-                          </Button>
-                        ) : (
-                          <Button disabled={true} className="w-32">
-                            Private Repo
-                          </Button>
-                        )}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-              </TableBody>
-            </Table> */}
           </div>
         ) : (
           <Card>
@@ -303,8 +285,11 @@ const PortfolioPage = () => {
             .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
             .map((item) => (
               <div key={item.id}>
-                <Card className="w-full h-full p-5">
-                  <CardHeader className="p-0 overflow-auto text-sm font-semibold">
+                <Card
+                  className="w-full h-full p-5 shadow-sm hover:shadow-lg transition duration-300 cursor-pointer"
+                  onClick={() => user && item && handleCardClick(user, item)}
+                >
+                  <CardHeader className="p-0 overflow-auto text-sm font-semibold ">
                     <div className="flex flex-wrap">
                       {item.name.toUpperCase()}
                       <span>

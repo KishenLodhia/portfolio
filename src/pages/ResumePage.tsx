@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import ResumeContent from "@/components/ResumeContent";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -33,7 +32,6 @@ import {
   SiUml,
 } from "react-icons/si";
 import ContentHeading from "@/components/ContentHeading";
-import ResumeContentDiv from "@/components/ResumeContentDiv";
 import { TbApi } from "react-icons/tb";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import weatherAppImage from "@/assets/weather-app.gif";
@@ -49,6 +47,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import MdBlob from "@/components/MdBlob";
+import ContentDiv from "@/components/ContentDiv";
+import { useEffect } from "react";
 
 const SummarySection = {
   title: "Summary",
@@ -385,24 +385,23 @@ const HighlightsSection = [
 ];
 
 const ResumePage = () => {
+  useEffect(() => {
+    document.title = "Kishen | Resume";
+  }, []);
   return (
     <>
-      <Navbar />
       <div className="flex flex-col items-start justify-start w-[90%] md:w-[70%]  m-auto mt-5">
         <MdBlob color="bg-purple-500" />
         <MdBlob color="bg-orange-500" />
         <MdBlob color="bg-blue-500" />
-        {/* <div className="absolute top-[30%] left-[40%] w-[400px] h-[400px] bg-purple-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal hidden md:block"></div>
-        <div className="absolute top-[10%] left-[55%] w-[300px] h-[300px] bg-orange-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal animation-delay-4000 hidden md:block"></div>
-        <div className="absolute top-[40%] left-[60%] w-[350px] h-[350px] bg-blue-500 rounded-full opacity-10 filter blur-2xl -z-11 animate-blob mix-blend-normal animation-delay-3000 hidden md:block"></div> */}
 
         {/* Summary */}
-        <ResumeContentDiv heading={SummarySection.title}>
+        <ContentDiv heading={SummarySection.title}>
           <ResumeContent content={SummarySection.content} />
-        </ResumeContentDiv>
+        </ContentDiv>
 
         {/* Skills */}
-        <ResumeContentDiv className="py-5" heading="Skills">
+        <ContentDiv className="py-5" heading="Skills">
           {SkillSections.map((item) => (
             <div key={item.title} className="flex flex-col items-start justify-start py-3 z-0">
               <ContentHeading text={item.title} />
@@ -419,9 +418,10 @@ const ResumePage = () => {
               </div>
             </div>
           ))}
-        </ResumeContentDiv>
+        </ContentDiv>
 
-        <ResumeContentDiv className="py-5" heading="Experience">
+        {/* Experience */}
+        <ContentDiv className="py-5" heading="Experience">
           <MdBlob color="bg-green-500" />
           <MdBlob color="bg-red-500" />
           <MdBlob color="bg-slate-500" />
@@ -444,9 +444,10 @@ const ResumePage = () => {
               ))}
             </div>
           ))}
-        </ResumeContentDiv>
+        </ContentDiv>
 
-        <ResumeContentDiv heading="Education">
+        {/* Education */}
+        <ContentDiv heading="Education">
           <MdBlob color="bg-purple-500" />
           <MdBlob color="bg-orange-500" />
 
@@ -479,9 +480,10 @@ const ResumePage = () => {
               ))}
             </div>
           ))}
-        </ResumeContentDiv>
+        </ContentDiv>
 
-        <ResumeContentDiv className="py-5" heading="Highlights">
+        {/* Highlights */}
+        <ContentDiv className="py-5" heading="Highlights">
           <div className="flex flex-wrap gap-2 p-3">
             {HighlightsSection.map((item) => (
               <div key={item.title}>
@@ -517,7 +519,7 @@ const ResumePage = () => {
               </div>
             ))}
           </div>
-        </ResumeContentDiv>
+        </ContentDiv>
       </div>
     </>
   );

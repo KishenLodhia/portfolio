@@ -39,7 +39,7 @@ const Languages = ({ repoName, userName }: LanguagesProps) => {
       ) : (
         languages && (
           <div className="">
-            {Object.entries(languages).map(([language, lines]) => (
+            {Object.entries(languages).map(([language]) => (
               // <div className="text-xs px-1 py-0 bg-slate-500 opacity-50 rounded-3xl text-nowrap">{language}</div>
               <Badge className="text-xs text-nowrap" key={language} variant="secondary">
                 {language}
