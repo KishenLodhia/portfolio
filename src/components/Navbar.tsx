@@ -59,19 +59,19 @@ export const Navbar = () => {
           <NavigationMenuList>
             {/* Navigation Menu Items */}
             <NavigationMenuItem className="hover:bg-accent hover:rounded px-3 py-2">
-              <NavigationMenuLink href="/">Home</NavigationMenuLink>
+              <NavigationMenuLink href="/portfolio/">Home</NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="hover:bg-accent hover:rounded px-3 py-2">
-              <NavigationMenuLink href="/about">About</NavigationMenuLink>
+              <NavigationMenuLink href="/portfolio/about">About</NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="hover:bg-accent hover:rounded px-3 py-2">
-              <NavigationMenuLink href="/resume">Resume</NavigationMenuLink>
+              <NavigationMenuLink href="/portfolio/resume">Resume</NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="hover:bg-accent hover:rounded px-3 py-2">
-              <NavigationMenuLink href="/portfolio">Portfolio</NavigationMenuLink>
+              <NavigationMenuLink href="/portfolio/portfolio">Portfolio</NavigationMenuLink>
             </NavigationMenuItem>
 
             {/* Social Media Links */}
@@ -111,20 +111,20 @@ export const Navbar = () => {
             <div className="flex flex-col items-center justify-center text-2xl py-10">
               <ul className="space-y-7 ">
                 <li>
-                  <a href="/">Home</a>
+                  <a href="/portfolio/">Home</a>
                 </li>
                 <Separator />
                 <li>
-                  <a href="/about">About</a>
+                  <a href="/portfolio/about">About</a>
                 </li>
                 <Separator />
 
                 <li>
-                  <a href="/resume">Resume</a>
+                  <a href="/portfolio/resume">Resume</a>
                 </li>
                 <Separator />
                 <li>
-                  <a href="/portfolio">Portfolio</a>
+                  <a href="/portfolio/portfolio">Portfolio</a>
                 </li>
               </ul>
             </div>
