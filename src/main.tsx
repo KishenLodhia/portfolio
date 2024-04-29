@@ -41,7 +41,7 @@ const router = createBrowserRouter(
       errorElement: <NotFoundPage />,
     },
   ],
-  { basename: "/portfolio" }
+  { basename: "/portfolio/" }
 );
 
 // Rendering the application into the root element
