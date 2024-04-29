@@ -13,36 +13,33 @@ import { Toaster } from "./components/ui/sonner.tsx";
 import Navbar from "./components/Navbar.tsx";
 
 // Creating the router with the routes for the application
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <HomePage />,
-      errorElement: <NotFoundPage />,
-    },
-    {
-      path: "/about",
-      element: <AboutPage />,
-      errorElement: <NotFoundPage />,
-    },
-    {
-      path: "/resume",
-      element: <ResumePage />,
-      errorElement: <NotFoundPage />,
-    },
-    {
-      path: "/portfolio",
-      element: <PortfolioPage />,
-      errorElement: <NotFoundPage />,
-    },
-    {
-      path: "/portfolio/:repoName",
-      element: <RepoPage />,
-      errorElement: <NotFoundPage />,
-    },
-  ],
-  { basename: "/portfolio/" }
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/about",
+    element: <AboutPage />,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/resume",
+    element: <ResumePage />,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/portfolio",
+    element: <PortfolioPage />,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/portfolio/:repoName",
+    element: <RepoPage />,
+    errorElement: <NotFoundPage />,
+  },
+]);
 
 // Rendering the application into the root element
 ReactDOM.createRoot(document.getElementById("root")!).render(
