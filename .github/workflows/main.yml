@@ -25,8 +25,8 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      # Set URL to the root of your domain
-      url: https://kishanlodhia.github.io
+      # Set URL to reflect the portfolio subfolder
+      url: https://kishenlodhia.github.io/portfolio/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -47,11 +47,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact (from project root)
+      - name: Upload artifact (build output)
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload content from the root directory
-          path: '.'
+          # Assuming your build outputs go to a folder like 'dist'
+          path: './dist'  # Modify if your build output path is different
 
       - name: Deploy to GitHub Pages
         id: deployment
