@@ -2,7 +2,7 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { ThemeProvider } from "./components/theme-provider.tsx";
-import { BrowserRouter, createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
@@ -46,9 +46,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   // <React.StrictMode>
   <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
     <Navbar />
-    <BrowserRouter basename="/portfolio">
-      <RouterProvider router={router} />
-    </BrowserRouter>
+
+    <RouterProvider router={router} />
+
     <Toaster />
   </ThemeProvider>
   // </React.StrictMode>
