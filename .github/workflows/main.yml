@@ -26,7 +26,7 @@ jobs:
     environment:
       name: github-pages
       # Set URL to reflect the portfolio subfolder
-      url: https://kishenlodhia.github.io/portfolio/
+      url: https://kishenlodhia.github.io/
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
