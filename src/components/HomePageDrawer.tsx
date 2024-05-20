@@ -10,22 +10,22 @@ const HomePageDrawer = () => {
           <div className="text-slate-500 text-2xl p-5">Follow me on social media</div>
           <div className="flex flex-row p-3 items-center justify-center w-56 ">
             <div className="p-5">
-              <a href="#" className="h-10 w-10">
+              <a href="www.linkedin.com/in/kishenlodhia" className="h-10 w-10">
                 <FaLinkedin size={50} />
               </a>
             </div>
             <div className="p-5">
-              <a href="#" className="h-10 w-10">
+              <a href="https://github.com/KishenLodhia" className="h-10 w-10">
                 <FaGithub size={50} />
               </a>
             </div>
             <div className="p-5">
-              <a href="#" className="h-10 w-10">
+              <a href="https://www.facebook.com/lodhia.kishan" className="h-10 w-10">
                 <FaFacebook size={50} />
               </a>
             </div>
             <div className="p-5">
-              <a href="#" className="h-10 w-10">
+              <a href="https://www.instagram.com/kishen_lodhia/" className="h-10 w-10">
                 <FaInstagram size={50} />
               </a>
             </div>

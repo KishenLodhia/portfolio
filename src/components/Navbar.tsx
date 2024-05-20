@@ -8,7 +8,6 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa";
-import { MdOutlineMailOutline } from "react-icons/md";
 import { ReactNode } from "react";
 import { IconType } from "react-icons";
 import { Separator } from "./ui/separator";
@@ -41,12 +40,6 @@ const components: {
     href: "https://github.com/KishenLodhia",
     description: "Check out my Github repos!",
     icon: FaGithub,
-  },
-  {
-    title: "Contact",
-    href: "#",
-    description: "Get in touch with me!",
-    icon: MdOutlineMailOutline,
   },
 ];
 

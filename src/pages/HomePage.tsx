@@ -95,7 +95,7 @@ const HomePage = () => {
               </span>{" "}
               and a student at{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500 pb-3 animate-pulse">
-                QUT.
+                QUT.{" "}
               </span>
               Here you'll find details about my professional career in the world of Software Engineering.
             </p>
