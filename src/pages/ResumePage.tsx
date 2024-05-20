@@ -35,6 +35,11 @@ import ContentHeading from "@/components/ContentHeading";
 import { TbApi } from "react-icons/tb";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import weatherAppImage from "@/assets/weather-app.gif";
+import linkedInFeatured from "@/assets/linkedin-featured.jpeg";
+import cosApp from "@/assets/cos-app.jpeg";
+import goldMedal from "@/assets/gold-medal.jpeg";
+import uspApp from "@/assets/usp-app.jpeg";
+
 import {
   Dialog,
   DialogClose,
@@ -348,15 +353,13 @@ const HighlightsSection = [
     title: "Featured on USP",
     closedDescription: "Official USP LinkedIn page",
     openDescription: "I was featured on the university LinkedIn page",
-    imageLink:
-      "https://media.licdn.com/dms/image/C4D22AQHiZjMQiAZckA/feedshare-shrink_1280/0/1655247780944?e=1715817600&v=beta&t=WkR63bPS0jMLimifN0T2khkfzLJYG2taPcA2p_-B4MA",
+    imageLink: linkedInFeatured,
   },
   {
     title: "Gold Medal Winner",
     closedDescription: "Software Engineering Gold Medalist",
     openDescription: "Gold Medal for Most outstanding Software Engineering graduate",
-    imageLink:
-      "https://media.licdn.com/dms/image/C4D2DAQEVmGDKWNasgg/profile-treasury-image-shrink_800_800/0/1679470663078?e=1714460400&v=beta&t=e9HlaLXM-yHqnp7lDMYeIZv7a2GvD0aMDTRiTwYa0so",
+    imageLink: goldMedal,
   },
 
   {
@@ -364,16 +367,14 @@ const HighlightsSection = [
     closedDescription: "My first large software project",
     openDescription:
       "CS415: Advanced Software Engineering project. This is a very deary project to me as it was my first large scale project. In this project, we designed a system for the university staff/students to order online from the cafeteria. 3 releases were made: (1) Web Application with limited features. (2) Web Application with all features. (3) Mobile App with full features. The image below depicts the UI for the app.",
-    imageLink:
-      "https://media.licdn.com/dms/image/D562DAQEvxQ-VQvRy8w/profile-treasury-image-shrink_800_800/0/1685623048517?e=1714460400&v=beta&t=Jc2YpiTPTUFZYV2aQTFQWYrEGV8cwbnXghx8CYLsCfo",
+    imageLink: cosApp,
   },
   {
     title: "USP Mobile App",
     closedDescription: "University mobile app project",
     openDescription:
       "A comprehensive mobile app, web portal, and API were developed to serve the needs of over 20,000 students, employing technologies like Flutter, Laravel, Firebase, MySQL, Node.JS, and RESTful APIs within an Agile (Scrum) methodology. Emphasizing intuitive UI/UX, offline functionality, and stringent security measures, the solution ensures an enjoyable user experience. Features include dynamic display of research and innovation data, access to university disciplines, emergency services integration for quick assistance, a digital notice board for announcements and trading, COVID-19 updates, and app notifications for staff-student communication via Firebase Cloud Messaging.",
-    imageLink:
-      "https://media.licdn.com/dms/image/D562DAQGQFFL_ql08FQ/profile-treasury-image-shrink_800_800/0/1685623731135?e=1714460400&v=beta&t=ENFVKtc3jOTQQ-2fn14Q7afuvD8rcRAA4SzuQdplYzI",
+    imageLink: uspApp,
   },
   {
     title: "Weather App Project",

@@ -11,7 +11,7 @@ type AboutContent = {
 // AboutPage component
 const AboutPage = () => {
   // Array of AboutContent objects
-  let data: AboutContent[] = [
+  const data: AboutContent[] = [
     {
       title: "About",
       content: `Hello! I'm Kishen Lodhia, a passionate Software Engineer currently pursuing my studies at Queensland

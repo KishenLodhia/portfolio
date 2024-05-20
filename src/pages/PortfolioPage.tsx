@@ -69,9 +69,9 @@ const PortfolioPage = () => {
   const [searchNews, setSearchNews] = useState("Programming");
   const [news, setNews] = useState<News>();
 
-  const [newsError, setNewsError] = useState(null);
-  const [userError, setUserError] = useState(null);
-  const [reposError, setReposError] = useState(null);
+  // const [newsError, setNewsError] = useState(null);
+  // const [userError, setUserError] = useState(null);
+  // const [reposError, setReposError] = useState(null);
 
   // Array of languages
   const languages = [
@@ -127,8 +127,9 @@ const PortfolioPage = () => {
         }
         const data = await response.json();
         setNews(data);
-      } catch (error: any) {
-        setNewsError(error.message);
+      } catch (error) {
+        // Add type 'any' to the error variabl
+        // setNewsError(error.message);
       }
     };
     fetchNews();
@@ -152,8 +153,8 @@ const PortfolioPage = () => {
         const userData: User = await response.json();
         setUser(userData);
         return userData;
-      } catch (error: any) {
-        setUserError(error.message);
+      } catch (error) {
+        // setUserError(error.message);
       }
     };
 
@@ -173,8 +174,8 @@ const PortfolioPage = () => {
         const data: { items: Repo[] } = await response.json();
         setRepos(data.items);
         // setRepos(data);
-      } catch (error: any) {
-        setReposError(error.message);
+      } catch (error) {
+        // setReposError(error.message);
       }
     };
 
@@ -198,17 +199,17 @@ const PortfolioPage = () => {
   );
 
   // Error checks
-  if (newsError) {
-    return <div>Error fetching news: {newsError}</div>;
-  }
+  // if (newsError) {
+  //   return <div>Error fetching news: {newsError}</div>;
+  // }
 
-  if (userError) {
-    return <div>Error fetching user information: {userError}</div>;
-  }
+  // if (userError) {
+  //   return <div>Error fetching user information: {userError}</div>;
+  // }
 
-  if (reposError) {
-    return <div>Error fetching repositories: {reposError}</div>;
-  }
+  // if (reposError) {
+  //   return <div>Error fetching repositories: {reposError}</div>;
+  // }
 
   return (
     <div className="flex flex-col w-[90%] md:w-[70%] m-auto">
