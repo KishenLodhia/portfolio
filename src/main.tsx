@@ -10,11 +10,13 @@ import PortfolioPage from "./pages/PortfolioPage.tsx";
 import RepoPage from "./pages/RepoPage.tsx";
 import { Toaster } from "./components/ui/sonner.tsx";
 import Navbar from "./components/Navbar.tsx";
+import { Analytics } from "@vercel/analytics/react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <Analytics />
     <BrowserRouter basename="/">
       <Navbar />
       <Routes>
