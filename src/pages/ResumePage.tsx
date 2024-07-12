@@ -57,9 +57,10 @@ import { useEffect } from "react";
 
 const SummarySection = {
   title: "Summary",
-  content: `Highly motivated and results-oriented software engineer with 1.5+ years of experience in both frontend and
-        backend development. Passionate about developing high quality software with a strong interest in writing
-        efficient code.`,
+  content: `Highly motivated Software Engineer with full working rights and over 2 years of full stack development experience. Awarded a gold medal
+for academic excellence. Passionate about developing high-quality software with a focus on writing efficient code. Proven track record in
+successfully leading projects, collaborating with cross-functional teams, and delivering solutions that enhance user experience and
+operational efficiency.`,
 };
 
 const SkillSections = [
@@ -210,27 +211,111 @@ const ExperienceSection = [
     details: [
       {
         title: "Eviole web application",
-        content: `Engineered a platform merging a custom web application with and
-    existing WordPress functionalities, enabling easy and dynamic content. Collaborated with marketing to refine the design.`,
+        content: `Collaborated with the company's CEO, Marketing, and Business Development Manager to identify the current 
+        painpoints in the system. Then, collaborated and engineered a hybrid platform by merging a web application with WordPress-based 
+        technologies, enhancing user and staff experience, resulting in a 30% increase in user satisfaction.`,
       },
       {
-        title: "API development",
-        content: `Developed 2 APIs following the OpenAPI 3.0 spec. Firstly, to communicate with a leading
-        Australian Electronic Medical Record (eMR) System. Secondly, JWT authenticated API to communicate with the eviole
-        mobile app.`,
+        title: "External API Development",
+        content: `Collaborated with external software engineers and negotiated a new API design that integrates with the web application 
+        seamlessly and reduced the error rate to almost zero. The API integrated with the system seamlessly`,
       },
       {
-        title: "Automated testing",
-        content: `Carried out automated end to end tests for the whole web application`,
+        title: "Internal API Development",
+        content: `Engineered a new method to implement a REST API to enable communication between Web Application and the Mobile Application.
+        Created a new plugin to integrate with WordPress environment and allowed the mobile app to link to it.`,
       },
       {
         title: "Mobile app",
-        content: `Created a mobile app with UI/UX design considerations, preserving all functionalities and enhancing
-        user engagement.`,
+        content: `Devised an architecture for the mobile app to seamlessly integrate with the web application using minimal resources 
+        available. This allowed the app to load all data and cache it within 2 seconds. Initiated a UI/UX principles to building 
+        beautiful and effective screen designs.`,
+      },
+      {
+        title: "Automated testing",
+        content: `Carried out automated end to end tests for the whole web application and debugged as required.`,
+      },
+
+      {
+        title: "Stack",
+        content: `PHP, JavaScript, Flutter, Dart, REST APIs, Cypress, HTML, CSS`,
+      },
+    ],
+  },
+  {
+    company: "Queensland University of Technology",
+    role: "Web and Mobile Development Project",
+    start: "February 2024",
+    end: "June 2024",
+    details: [
+      {
+        title: "Portfolio Project",
+        content: `Designed, implemented, and deployed a responsive personal portfolio website using state-of-the-art technologies 
+        including React, Vite, Tailwind CSS, and Shadcn/UI. Demonstrated advanced Git/GitHub skills and integration of open-source packages.`,
+      },
+      {
+        title: "Full-Stack Application",
+        content: `Developed a user-friendly fitness tracking mobile app with React Native, Expo, Node.js, Express, and MySQL. 
+        Integrated secure REST APIs for tracking water intake, steps, and personal wellbeing, showcasing full-stack development expertise.`,
       },
       {
         title: "Stack",
-        content: `PHP, JavaScript, Flutter, REST APIs, Cypress, HTML, CSS`,
+        content: `JavaScript, TypeScript, React, Vite, React Native, Expo, Postman, REST APIs, HTML, CSS, Tailwind, Shadcn/ui`,
+      },
+    ],
+  },
+
+  {
+    company: "Mettlesome",
+    role: "User Experience Research Project",
+    start: "February 2024",
+    end: "May 2024",
+    details: [
+      {
+        title: "Research",
+        content: `Conducted comprehensive user research using techniques such as photo elicitation and affinity diagrams. 
+        Through in-depth interviews and usability testing, key user needs and pain points were identified, informing the 
+        development of a more effective mood tracking app, Toucan Health, and significantly improving user satisfaction`,
+      },
+      {
+        title: "App Redesign",
+        content: `Expertly leveraged Figma to design intuitive, data-driven user interfaces. This redesign included usability 
+        testing and evaluation, optimizing the user experience for the Toucan Health app and resulting in increased user 
+        engagement and satisfaction.`,
+      },
+      {
+        title: "Tools and Techniques",
+        content: `Figma, Usability Testing, Photo Elicitation, Affinity Diagrams, Hook Model`,
+      },
+    ],
+  },
+  {
+    company: "Queensland University of Technology",
+    role: "Large Language Models - Sentiment Analysis",
+    start: "August 2023",
+    end: "November 2023",
+    details: [
+      {
+        title: "Performance Analysis and Comparison",
+        content: `Conducted an in-depth analysis and comparison of four models on Twitter's hydrogen energy discourse. 
+        Traditional models, such as logistic regression and Naive Bayes, were found to overfit the data, while fine-tuned 
+        BERT-based transformers generalized well, achieving state-of-the-art accuracy of 89%. This study provided valuable 
+        insights into the advantages of large language models over traditional approaches in understanding and processing 
+        hydrogen energy-related discussions.`,
+      },
+      {
+        title: "Research Publication",
+        content: `Authored a comprehensive research paper on the analysis of large language models (LLMs) versus traditional 
+        models in the context of Twitter's hydrogen energy discussions. The paper detailed the methodologies, findings, and 
+        implications of the study, highlighting how traditional models tended to overfit while LLMs demonstrated superior 
+        generalization capabilities. This research received excellent marks (Grade: 7 / 7) for its quality, depth of analysis, 
+        and significant contribution to the field, showcasing the potential of BERT-based transformers in achieving high accuracy 
+        and impactful research outcomes.`,
+      },
+
+      {
+        title: "Stack",
+        content: `Python, Jupyter Notebook, Tensorflow, Huggingface, Sci-kit learn`,
       },
     ],
   },
@@ -243,9 +328,8 @@ const ExperienceSection = [
     details: [
       {
         title: "Real-estate CRM Solution",
-        content: `Designed and implemented a custom backend
-        solution for a realty company, this led to enhancing the customer relationships through a modern web application. The
-        solution helped the client by reducing their day-to-day activities by 85%.`,
+        content: `Designed and implemented a custom backend solution for a realty company, this led to enhancing the customer 
+        relationships through a modern web application. The solution helped the client by reducing their day-to-day activities by 85%.`,
       },
       {
         title: "Mobile Application - Tonga 'Atautolu",
@@ -305,7 +389,7 @@ const EducationSection = [
       },
       {
         title: "GPA",
-        content: `6.33/7`,
+        content: `6.375/7`,
       },
     ],
     awards: [
@@ -315,7 +399,11 @@ const EducationSection = [
       },
       {
         title: "Academic Award",
-        content: `Deans Excellence Award`,
+        content: `Deans Excellence Award Semester 1 2023`,
+      },
+      {
+        title: "Academic Award",
+        content: `Deans Excellence Award Semester 1 2024`,
       },
     ],
   },
