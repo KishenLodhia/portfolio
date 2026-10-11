@@ -13,6 +13,7 @@ import ResumePage from "./pages/ResumePage.tsx";
 import PortfolioPage from "./pages/PortfolioPage.tsx";
 import RepoPage from "./pages/RepoPage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
+import CaseStudyPage from "./pages/CaseStudyPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -26,6 +27,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/resume" element={<ResumePage />} />
+              <Route path="/work/:slug" element={<CaseStudyPage />} />
               <Route path="/portfolio" element={<PortfolioPage />} />
               <Route path="/portfolio/:repoName" element={<RepoPage />} />
               <Route path="*" element={<NotFoundPage />} />

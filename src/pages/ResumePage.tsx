@@ -1,9 +1,11 @@
-import { Mail, MapPin, Printer, X } from "lucide-react";
+import { Link } from "react-router";
+import { ArrowUpRight, Mail, MapPin, Printer, X } from "lucide-react";
 import { Dialog } from "radix-ui";
 import PageShell from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { education, experience, highlights, profile, skills, socials } from "@/data/profile";
+import { caseStudies } from "@/data/caseStudies";
 
 const summary = `Software Engineer with 5+ years of full-stack experience across web, mobile and APIs. At
 ${profile.currently.company} I own the marketplace and provider app and lead AI-driven features. Gold Medal graduate in Software Engineering and Master of IT (Computer Science) from QUT.
@@ -89,9 +91,35 @@ const ResumePage = () => (
       </ol>
     </section>
 
+    {/* Featured projects */}
+    <section className="py-12">
+      <SectionHeading eyebrow="02" title="Featured projects" />
+      <div className="divide-y border-y">
+        {caseStudies.map((study) => (
+          <Reveal key={study.slug}>
+            <Link
+              to={`/work/${study.slug}`}
+              className="group grid gap-2 py-6 md:grid-cols-[1fr_auto] md:items-baseline md:gap-8"
+            >
+              <div>
+                <h3 className="text-lg font-semibold tracking-tight">
+                  {study.name} <span className="font-normal text-muted-foreground">· {study.client}</span>
+                </h3>
+                <p className="mt-1 text-muted-foreground">{study.tagline}</p>
+              </div>
+              <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
+                {study.period}
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand print:hidden" />
+              </p>
+            </Link>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+
     {/* Skills */}
     <section className="py-12">
-      <SectionHeading eyebrow="02" title="Skills" />
+      <SectionHeading eyebrow="03" title="Skills" />
       <div className="grid gap-px overflow-hidden rounded-2xl border bg-border sm:grid-cols-2">
         {skills.map((group, index) => (
           <Reveal
@@ -115,7 +143,7 @@ const ResumePage = () => (
 
     {/* Education */}
     <section className="py-12">
-      <SectionHeading eyebrow="03" title="Education" />
+      <SectionHeading eyebrow="04" title="Education" />
       <div className="grid gap-4 md:grid-cols-2">
         {education.map((school, index) => (
           <Reveal key={school.short} delay={index * 80} className="rounded-2xl border bg-card p-6">
@@ -146,7 +174,7 @@ const ResumePage = () => (
 
     {/* Highlights gallery */}
     <section className="py-12 print:hidden">
-      <SectionHeading eyebrow="04" title="Highlights" description="A few moments and projects I'm proud of." />
+      <SectionHeading eyebrow="05" title="Highlights" description="A few moments and projects I'm proud of." />
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
         {highlights.map((item, index) => (
           <Reveal key={item.title} delay={(index % 3) * 60}>

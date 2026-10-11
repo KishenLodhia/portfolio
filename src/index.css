@@ -33,6 +33,17 @@
 
   --animate-marquee: marquee 40s linear infinite;
   --animate-glow: glow 9s ease-in-out infinite;
+  --animate-scan: scan 3.2s ease-in-out infinite;
+
+  @keyframes scan {
+    0%,
+    100% {
+      top: 0%;
+    }
+    50% {
+      top: calc(100% - 3rem);
+    }
+  }
 
   @keyframes marquee {
     from {
@@ -177,6 +188,7 @@
   }
   .animate-marquee,
   .animate-glow,
+  .animate-scan,
   .animate-ping {
     animation: none !important;
   }

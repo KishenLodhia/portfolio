@@ -4,6 +4,7 @@ import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import PageShell from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import FeaturedWork from "@/components/FeaturedWork";
 import { experience, profile, projects, skills, socials, stats } from "@/data/profile";
 
 const socialIcons: Record<string, React.ReactNode> = {
@@ -156,9 +157,15 @@ const HomePage = () => {
       <section id="work" className="mx-auto max-w-5xl scroll-mt-24 px-5 py-24 md:px-8">
         <SectionHeading
           eyebrow="Selected work"
-          title="Products, research and experiments"
-          description="A mix of production systems I've shipped for clients and employers, and projects from study and side work."
+          title="Products I've built and still look after"
+          description="Production software running real businesses, from an AI-powered freight marketplace to a jewellery store's point of sale."
         />
+        <FeaturedWork />
+
+        <Reveal className="mb-8 mt-24">
+          <h3 className="text-2xl font-semibold tracking-tight">More projects</h3>
+          <p className="mt-2 text-muted-foreground">Research, university work and side projects.</p>
+        </Reveal>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => {
             const Wrapper = project.href ? "a" : "div";
@@ -189,16 +196,21 @@ const HomePage = () => {
               </Reveal>
             );
           })}
+          <Reveal delay={160} className="h-full">
+            <Link
+              to="/portfolio"
+              className="group flex h-full min-h-48 flex-col justify-between rounded-2xl border border-dashed p-6 transition-colors hover:border-foreground/30 hover:bg-card"
+            >
+              <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Open source</p>
+              <div>
+                <h3 className="text-xl font-semibold tracking-tight">Browse everything on GitHub</h3>
+                <span className="mt-2 inline-flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground">
+                  Live repositories <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
+            </Link>
+          </Reveal>
         </div>
-        <Reveal className="mt-8">
-          <Link
-            to="/portfolio"
-            className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Browse all repositories on GitHub
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </Reveal>
       </section>
 
       {/* Experience */}

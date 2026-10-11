@@ -6,6 +6,7 @@ import { useTheme } from "./theme-provider";
 
 const links = [
   { to: "/", label: "Home" },
+  { to: "/#work", label: "Work" },
   { to: "/about", label: "About" },
   { to: "/resume", label: "Resume" },
   { to: "/portfolio", label: "GitHub" },
@@ -62,7 +63,8 @@ export const Navbar = () => {
               className={({ isActive }) =>
                 cn(
                   "rounded-full px-4 py-1.5 text-sm transition-colors",
-                  isActive ? "bg-accent text-foreground" : "text-muted-foreground hover:text-foreground"
+                  // Hash links point into the home page, so they never show as the active page.
+                  isActive && !link.to.includes("#") ? "bg-accent text-foreground" : "text-muted-foreground hover:text-foreground"
                 )
               }
             >

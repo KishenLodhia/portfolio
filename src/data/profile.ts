@@ -133,21 +133,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "AI Photo-to-Quote",
-    context: "Truckit.net · My idea",
-    description:
-      "Customers upload photos and AI works out item measurements, then prefills the quote and listing forms. No tape measure, far less typing.",
-    tags: ["AI", "Computer Vision", "Laravel", "Angular"],
-    href: "https://www.truckit.net",
-  },
-  {
-    title: "Eviole Patient Platform",
-    context: "LifeShape Clinic",
-    description:
-      "An all-in-one web and mobile platform supporting patients on weight-loss medication, with a secure integration into Health Track.",
-    tags: ["Flutter", "PHP", "REST", "Cypress"],
-  },
-  {
     title: "USP Mobile App",
     context: "The University of the South Pacific",
     description:
@@ -175,6 +160,13 @@ export const projects: Project[] = [
     description: "A React Native app with an Express and MySQL API for tracking water intake, steps and wellbeing.",
     tags: ["React Native", "Expo", "Express", "MySQL"],
     href: "https://github.com/KishenLodhia/fitness-app",
+  },
+  {
+    title: "Weather App",
+    context: "Side project",
+    description: "A minimal Flutter weather app with location detection and live data from weatherapi.com.",
+    tags: ["Flutter", "Dart", "REST"],
+    href: "https://github.com/KishenLodhia/weather_app_flutter",
   },
 ];
 
