@@ -26,3 +26,4 @@ dist-ssr
 KishenLodhiaCode.zip
 KishenLodhiaCode
 .vercel
+.env*
