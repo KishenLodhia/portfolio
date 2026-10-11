@@ -1,333 +1,166 @@
-// Effect hook to perform side effects
-import MdBlob from "@/components/MdBlob";
-import Languages from "@/components/Languages";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { SetStateAction, useEffect, useState } from "react";
+import { useMemo, useState } from "react";
+import { Link } from "react-router";
+import { ArrowUpRight, GitFork, Search, Star } from "lucide-react";
+import PageShell from "@/components/PageShell";
+import Reveal from "@/components/Reveal";
+import LanguageBar from "@/components/LanguageBar";
 import { Skeleton } from "@/components/ui/skeleton";
-import GitHubCommitAreaChart from "@/components/GithubCommitAreaChart";
-import { Input } from "@/components/ui/input";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useNavigate } from "react-router-dom";
+import { profile } from "@/data/profile";
+import { colorFor, reposPath, timeAgo, useGitHub, userPath, type GitHubRepo, type GitHubUser } from "@/lib/github";
 
-// Effect hook to perform side effects
-type Repo = {
-  id: number;
-  name: string;
-  full_name: string;
-  html_url: string;
-  visibility: string;
-  created_at: string;
-  updated_at: string;
-  languages_url: string;
-  language: string;
-  private: boolean;
-};
-
-// Effect hook to perform side effects
-type User = {
-  login: string;
-  name: string;
-  avatar_url: string;
-  html_url: string;
-  twitter_username: string | null;
-};
-
-// Effect hook to perform side effects
-type News = {
-  status: string;
-  totalResults: number;
-  articles: Article[];
-};
-
-// Defining the Article type
-type Article = {
-  source: string;
-  author: string;
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: Date;
-  content: string;
-};
-
-// Main component
 const PortfolioPage = () => {
-  // State variables
-  const [repos, setRepos] = useState<Repo[]>([]);
-  const [user, setUser] = useState<User | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchNews, setSearchNews] = useState("Programming");
-  const [news, setNews] = useState<News>();
+  const user = useGitHub<GitHubUser>(userPath);
+  const repos = useGitHub<GitHubRepo[]>(reposPath);
+  const [query, setQuery] = useState("");
+  const [language, setLanguage] = useState<string | null>(null);
 
-  // const [newsError, setNewsError] = useState(null);
-  // const [userError, setUserError] = useState(null);
-  // const [reposError, setReposError] = useState(null);
-
-  // Array of languages
-  const languages = [
-    "Web Development",
-    "Database",
-    "Software Engineering",
-    "C++",
-    "TypeScript",
-    "React.js",
-    "Node.js",
-    "Python Django",
-    "Java Spring",
-    "Machine Learning",
-  ];
-
-  const navigate = useNavigate(); // For navigation
-
-  // Function to handle card click
-  const handleCardClick = (user: User | null, repo: Repo) => {
-    // if (repo.private) {
-    //   return toast("Not allowed", {
-    //     description: "Cannot view private repos",
-    //   });
-    // }
-    if (repo.name && user) {
-      const repoName = repo.name;
-      navigate(`/portfolio/${repoName}`, { state: { userName: user.login, repoName: repoName } });
-    }
-  };
-
-  // Effect hook to set document title
-  useEffect(() => {
-    document.title = "Kishen | Portfolio";
-  }, []);
-
-  // Effect hook to fetch news
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const date = new Date();
-        date.setMonth(date.getMonth() - 1);
-        const pastMonth = date.toISOString().split("T")[0];
-        const token = import.meta.env.VITE_NEWS_API_KEY;
-        const url = `https://newsapi.org/v2/everything?q=programming AND ${searchNews}&from=${pastMonth}&sortBy=popularity&pageSize=20&page=1`;
-        const response = await fetch(url, {
-          headers: {
-            "x-api-key": token,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch news");
-        }
-        const data = await response.json();
-        setNews(data);
-      } catch (error) {
-        // Add type 'any' to the error variabl
-        // setNewsError(error.message);
-      }
-    };
-    fetchNews();
-  }, [searchNews]);
-
-  // Effect hook to fetch user and repos
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = import.meta.env.VITE_GITHUB_PAT;
-        const response = await fetch("https://api.github.com/user", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch user information");
-        }
-
-        const userData: User = await response.json();
-        setUser(userData);
-        return userData;
-      } catch (error) {
-        // setUserError(error.message);
-      }
-    };
-
-    const fetchRepos = async (user: User) => {
-      try {
-        const token = import.meta.env.VITE_GITHUB_PAT;
-        const response = await fetch(`https://api.github.com/search/repositories?q=user:${user?.login}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch repositories");
-        }
-
-        const data: { items: Repo[] } = await response.json();
-        setRepos(data.items);
-        // setRepos(data);
-      } catch (error) {
-        // setReposError(error.message);
-      }
-    };
-
-    async function fetchData() {
-      const user = await fetchUser();
-      if (user) {
-        await fetchRepos(user);
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  // Function to handle search change
-  const handleSearchChange = (event: { target: { value: SetStateAction<string> } }) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const filteredRepos = repos.filter((repo) =>
-    Object.values(repo).some((val) => String(val).toLowerCase().includes(searchTerm.toLowerCase()))
+  // Skip forks and the profile README repo, which isn't a project.
+  const ownRepos = useMemo(
+    () => (repos.data ?? []).filter((repo) => !repo.fork && repo.name.toLowerCase() !== profile.github.toLowerCase()),
+    [repos.data]
   );
 
-  // Error checks
-  // if (newsError) {
-  //   return <div>Error fetching news: {newsError}</div>;
-  // }
+  // Repo count per primary language, for the breakdown bar and filter chips.
+  const languageCounts = useMemo(
+    () =>
+      ownRepos.reduce<Record<string, number>>((counts, repo) => {
+        if (repo.language) counts[repo.language] = (counts[repo.language] ?? 0) + 1;
+        return counts;
+      }, {}),
+    [ownRepos]
+  );
 
-  // if (userError) {
-  //   return <div>Error fetching user information: {userError}</div>;
-  // }
-
-  // if (reposError) {
-  //   return <div>Error fetching repositories: {reposError}</div>;
-  // }
+  const visible = ownRepos.filter((repo) => {
+    const haystack = `${repo.name} ${repo.description ?? ""} ${repo.language ?? ""} ${(repo.topics ?? []).join(" ")}`;
+    return (!language || repo.language === language) && haystack.toLowerCase().includes(query.toLowerCase());
+  });
 
   return (
-    <div className="flex flex-col w-[90%] md:w-[70%] m-auto">
-      <div>
-        {user ? (
+    <PageShell title="GitHub">
+      <div className="bg-grid pointer-events-none absolute inset-x-0 top-0 h-96" />
+
+      {/* Profile header */}
+      <Reveal className="relative flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="flex items-center gap-5">
+          {user.data ? (
+            <img src={user.data.avatar_url} alt="" className="h-20 w-20 rounded-2xl border" />
+          ) : (
+            <Skeleton className="h-20 w-20 rounded-2xl" />
+          )}
           <div>
-            <Card className="flex flex-col items-center justify-center">
-              <CardContent className="flex flex-wrap items-center justify-center">
-                <CardHeader className="flex items-center justify-center">
-                  <img src={user.avatar_url} alt="User Avatar" className="rounded-full h-24" />
-                </CardHeader>
-                <CardHeader>
-                  <CardTitle>{user.name}</CardTitle>
-                  <CardDescription>Github Portfolio</CardDescription>
-                </CardHeader>
-              </CardContent>
-              <CardContent>
-                <GitHubCommitAreaChart userLogin={user.login} />
-              </CardContent>
-            </Card>
+            <p className="mb-1 font-mono text-xs uppercase tracking-[0.2em] text-brand">Open source</p>
+            <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">GitHub</h1>
+            {user.data && (
+              <p className="mt-1 text-sm text-muted-foreground">
+                @{user.data.login} · {ownRepos.length || user.data.public_repos} public repositories
+              </p>
+            )}
           </div>
-        ) : (
-          <Card>
-            <div className="flex flex-row w-full p-4 items-center justify-center">
-              <Skeleton className="rounded-full h-16 w-16 m-2" />
-              <div className="flex flex-col p-4">
-                <Skeleton className="rounded-full w-40 h-5 m-2" />
-                <Skeleton className="rounded-full w-20 h-5 m-2" />
-              </div>
-            </div>
-          </Card>
+        </div>
+        {user.data && (
+          <a
+            href={user.data.html_url}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex w-fit items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-accent"
+          >
+            View profile <ArrowUpRight className="h-4 w-4" />
+          </a>
+        )}
+      </Reveal>
+
+      {/* Language breakdown */}
+      {ownRepos.length > 0 && (
+        <Reveal delay={80} className="relative mt-10 rounded-2xl border bg-card p-6">
+          <p className="mb-4 text-sm font-medium">Primary languages across repositories</p>
+          <LanguageBar
+            data={languageCounts}
+            unit={(value) => `${value} ${value === 1 ? "repo" : "repos"}`}
+          />
+        </Reveal>
+      )}
+
+      {/* Filters */}
+      <Reveal delay={120} className="relative mt-10 flex flex-col gap-4 md:flex-row md:items-center">
+        <label className="relative flex-1 md:max-w-xs">
+          <span className="sr-only">Search repositories</span>
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="search"
+            placeholder="Search repositories"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            className="h-10 w-full rounded-full border bg-background pl-10 pr-4 text-sm outline-none transition-shadow placeholder:text-muted-foreground focus:ring-2 focus:ring-brand/40"
+          />
+        </label>
+        <div className="flex flex-wrap gap-2">
+          {[null, ...Object.keys(languageCounts).sort()].map((name) => (
+            <button
+              key={name ?? "all"}
+              type="button"
+              onClick={() => setLanguage(name)}
+              className={`rounded-full border px-3 py-1.5 text-xs transition-colors ${
+                language === name ? "border-foreground bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {name ?? "All"}
+            </button>
+          ))}
+        </div>
+      </Reveal>
+
+      {/* Repositories */}
+      <div className="relative mt-8 grid gap-4 md:grid-cols-2">
+        {repos.loading &&
+          Array.from({ length: 6 }, (_, index) => <Skeleton key={index} className="h-40 rounded-2xl" />)}
+
+        {repos.error && (
+          <p className="rounded-2xl border border-dashed p-8 text-center text-sm text-muted-foreground md:col-span-2">
+            {repos.error}
+          </p>
         )}
 
-        <div>
-          <div className="py-5 w-full md:w-[50%] flex items-center justify-center mx-auto flex-wrap">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">Select : {searchNews}</Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuRadioGroup value={searchNews} onValueChange={setSearchNews}>
-                  {languages.map((lang) => (
-                    <DropdownMenuRadioItem key={lang} value={lang}>
-                      {lang}
-                    </DropdownMenuRadioItem>
-                  ))}
-                </DropdownMenuRadioGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+        {!repos.loading && !repos.error && visible.length === 0 && (
+          <p className="p-8 text-center text-sm text-muted-foreground md:col-span-2">No repositories match.</p>
+        )}
 
-          <div className="flex items-center justify-center">
-            <Carousel className="w-[80%]">
-              <CarouselContent>
-                {news?.articles
-                  .filter((item) => item.urlToImage)
-                  .map((item) => (
-                    <CarouselItem key={item.url} className=" md:basis-1/2 lg:basis-1/3">
-                      <div className="p-1">
-                        <a href={item.url} target="_blank" className="cursor-pointer">
-                          <Card className="max-h-44 p-2 md:opacity-45 hover:opacity-100 transition duration-300">
-                            <div className="bg-cover overflow-hidden rounded-md h-full w-full">
-                              <img
-                                src={item.urlToImage}
-                                alt="image"
-                                className="max-h-28 w-full object-cover object-center"
-                              />
-                            </div>
-                            <div className="p-2 text-sm truncate">{item.title}</div>
-                          </Card>
-                        </a>
-                      </div>
-                    </CarouselItem>
-                  ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-          </div>
-        </div>
-        <div>
-          <div className="py-5 w-full md:w-[50%] flex items-center justify-center mx-auto">
-            <Input type="search" placeholder="Search" value={searchTerm} onChange={handleSearchChange} />
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-10">
-          <MdBlob color="bg-green-500" isStatic={true} top="30%" left="40%" />
-          <MdBlob color="bg-red-500" isStatic={true} top="60%" left="20%" />
-          <MdBlob color="bg-blue-500" isStatic={true} top="70%" left="10%" />
-          <MdBlob color="bg-yellow-500" isStatic={true} top="90%" left="60%" />
-
-          {filteredRepos
-            .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-            .map((item) => (
-              <div key={item.id}>
-                <Card
-                  className="w-full h-full p-5 shadow-sm hover:shadow-lg transition duration-300 cursor-pointer"
-                  onClick={() => user && item && handleCardClick(user, item)}
-                >
-                  <CardHeader className="p-0 overflow-auto text-sm font-semibold ">
-                    <div className="flex flex-wrap">
-                      {item.name.toUpperCase()}
-                      <span>
-                        <Badge variant="outline" className="ml-1">
-                          {item.private.toString() == "false" ? "PUBLIC" : "PRIVATE"}
-                        </Badge>
-                      </span>
-                    </div>
-                  </CardHeader>
-                  <p className="text-xs text-gray-500">Created {new Date(item.created_at).toLocaleDateString()}</p>
-                  <CardContent></CardContent>
-                  <Languages userName={"KishenLodhia"} repoName={item.name} />
-                </Card>
+        {visible.map((repo, index) => (
+          <Reveal key={repo.id} delay={(index % 2) * 60}>
+            <Link
+              to={`/portfolio/${repo.name}`}
+              className="group flex h-full flex-col rounded-2xl border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-xl hover:shadow-black/5"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <h2 className="font-mono text-base font-medium break-all">{repo.name}</h2>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
               </div>
-            ))}
-        </div>
+              <p className="mt-2 line-clamp-2 flex-1 text-sm text-muted-foreground">
+                {repo.description ?? "No description provided."}
+              </p>
+              <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+                {repo.language && (
+                  <span className="flex items-center gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: colorFor(repo.language) }} />
+                    {repo.language}
+                  </span>
+                )}
+                {repo.stargazers_count > 0 && (
+                  <span className="flex items-center gap-1">
+                    <Star className="h-3.5 w-3.5" /> {repo.stargazers_count}
+                  </span>
+                )}
+                {repo.forks_count > 0 && (
+                  <span className="flex items-center gap-1">
+                    <GitFork className="h-3.5 w-3.5" /> {repo.forks_count}
+                  </span>
+                )}
+                <span>Updated {timeAgo(repo.pushed_at)}</span>
+              </div>
+            </Link>
+          </Reveal>
+        ))}
       </div>
-    </div>
+    </PageShell>
   );
 };
 

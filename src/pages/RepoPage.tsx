@@ -1,126 +1,112 @@
-// Importing necessary components and hooks
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import PageShell from "@/components/PageShell";
+import Reveal from "@/components/Reveal";
+import LanguageBar from "@/components/LanguageBar";
+import { Skeleton } from "@/components/ui/skeleton";
+import { languagesPath, repoPath, timeAgo, useGitHub, type GitHubRepo } from "@/lib/github";
 
-// Importing custom components
-import RepoCard from "@/components/ComponentCard";
-import LanguagesChart from "@/components/LanguagesChart";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import { Badge } from "@/components/ui/badge";
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" });
 
-// Defining the Repo type
-type Repo = {
-  name: string;
-  full_name: string;
-  private: boolean;
-  owner: {
-    login: string;
-    avatar_url: string;
-    html_url: string;
-  };
-  html_url: string;
-  created_at: string;
-  updated_at: string;
-  pushed_at: string;
-  size: number;
-  stargazers_count: number;
-  watchers_count: number;
-  language: string;
-  open_issues_count: number;
-};
+const formatSize = (kb: number) => (kb >= 1024 ? `${(kb / 1024).toFixed(1)} MB` : `${kb} KB`);
 
-// Function to format date
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString();
-};
-
-// Main component
 const RepoPage = () => {
-  const location = useLocation();
-  const { userName, repoName } = location.state || {};
-  const [repo, setRepo] = useState<Repo | null>(null);
-  const [languages, setLanguages] = useState({});
-
-  // Effect hook to perform side effects
-  useEffect(() => {
-    const token = import.meta.env.VITE_GITHUB_PAT;
-    const fetchRepo = async () => {
-      const response = await fetch(`https://api.github.com/repos/${userName}/${repoName}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data: Repo = await response.json();
-      setRepo(data);
-    };
-
-    const fetchLanguages = async () => {
-      try {
-        const response = await fetch(`https://api.github.com/repos/${userName}/${repoName}/languages`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const data = await response.json();
-        setLanguages(data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-
-    if (userName && repoName) {
-      fetchRepo().then(fetchLanguages);
-    }
-  }, [userName, repoName]);
-
-  if (!repo) {
-    return <div className="flex items-center justify-center">Loading...</div>;
-  }
+  const { repoName = "" } = useParams();
+  const repo = useGitHub<GitHubRepo>(repoPath(repoName));
+  const languages = useGitHub<Record<string, number>>(languagesPath(repoName));
 
   return (
-    <div className="flex flex-col w-[90%] md:w-[70%] m-auto gap-2">
-      <Card>
-        <CardHeader className="flex flex-row gap-2">
-          <CardTitle>
-            <div className="flex flex-row gap-2 items-center">
-              <div>{repo.full_name}</div>
-              {repo.private ? (
-                <div>
-                  <Badge>PRIVATE REPO</Badge>
-                </div>
-              ) : (
-                <div>
-                  <a href={repo.html_url} target="_blank">
-                    <FaExternalLinkAlt color="#3A1AEE" className="cursor-pointer" />
-                  </a>
-                </div>
+    <PageShell title={repoName}>
+      <Link
+        to="/portfolio"
+        className="group mb-10 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" /> All repositories
+      </Link>
+
+      {repo.error && (
+        <p className="rounded-2xl border border-dashed p-8 text-center text-sm text-muted-foreground">{repo.error}</p>
+      )}
+
+      {repo.loading && (
+        <div className="space-y-4">
+          <Skeleton className="h-12 w-2/3 rounded-xl" />
+          <Skeleton className="h-5 w-1/2 rounded-full" />
+          <Skeleton className="mt-8 h-32 rounded-2xl" />
+        </div>
+      )}
+
+      {repo.data && (
+        <>
+          <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-brand">Repository</p>
+              <h1 className="font-mono text-3xl font-semibold tracking-tight break-all md:text-5xl">{repo.data.name}</h1>
+              <p className="mt-3 max-w-2xl text-muted-foreground">
+                {repo.data.description ?? "No description provided."}
+              </p>
+            </div>
+            <div className="flex shrink-0 gap-2">
+              {repo.data.homepage && (
+                <a
+                  href={repo.data.homepage}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-accent"
+                >
+                  Live site <ArrowUpRight className="h-4 w-4" />
+                </a>
               )}
+              <a
+                href={repo.data.html_url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+              >
+                View on GitHub <ArrowUpRight className="h-4 w-4" />
+              </a>
             </div>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CardContent className="flex flex-row gap-2 items-center">
-            <img src={repo.owner.avatar_url} alt="User Avatar" className="rounded-full h-10" />
-            <div className="flex flex-col">
-              <div className="text-sm">Owner</div>
-              <div>{repo.owner.login}</div>
-            </div>
-          </CardContent>
-        </CardContent>
-      </Card>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-        <RepoCard title={"Created at"} data={formatDate(repo.created_at)} />
-        <RepoCard title={"Last updated"} data={formatDate(repo.updated_at)} />
-        <RepoCard title={"Last push"} data={formatDate(repo.pushed_at)} />
-        <RepoCard title={"Watchers"} data={repo.watchers_count.toString()} />
-        <RepoCard title={"Size"} data={`${repo.size.toFixed(1)} KB`} />
-        <RepoCard title={"Primary Language"} data={repo.language} />
-      </div>
-      <div className="h-[700px]">
-        <LanguagesChart languages={languages} />
-      </div>
-    </div>
+          </Reveal>
+
+          <Reveal
+            delay={80}
+            className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border bg-border md:grid-cols-3"
+          >
+            {[
+              ["Created", formatDate(repo.data.created_at)],
+              ["Last push", timeAgo(repo.data.pushed_at)],
+              ["Primary language", repo.data.language ?? "—"],
+              ["Stars", repo.data.stargazers_count.toString()],
+              ["Forks", repo.data.forks_count.toString()],
+              ["Size", formatSize(repo.data.size)],
+            ].map(([label, value]) => (
+              <div key={label} className="bg-card p-6">
+                <div className="text-sm text-muted-foreground">{label}</div>
+                <div className="mt-1 text-xl font-semibold tracking-tight">{value}</div>
+              </div>
+            ))}
+          </Reveal>
+
+          {languages.data && Object.keys(languages.data).length > 0 && (
+            <Reveal delay={160} className="mt-6 rounded-2xl border bg-card p-6">
+              <p className="mb-4 text-sm font-medium">Languages</p>
+              <LanguageBar data={languages.data} />
+            </Reveal>
+          )}
+
+          {repo.data.topics && repo.data.topics.length > 0 && (
+            <Reveal delay={200} className="mt-6 flex flex-wrap gap-2">
+              {repo.data.topics.map((topic) => (
+                <span key={topic} className="rounded-full bg-brand/10 px-3 py-1 text-xs text-brand">
+                  {topic}
+                </span>
+              ))}
+            </Reveal>
+          )}
+        </>
+      )}
+    </PageShell>
   );
 };
 
