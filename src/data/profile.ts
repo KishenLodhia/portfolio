@@ -14,7 +14,7 @@ export const profile = {
   location: "Brisbane, Australia",
   email: "kishan1999lodhia@gmail.com",
   github: "KishenLodhia",
-  tagline: "I build reliable web and mobile products end to end, from API design to the pixels people touch.",
+  tagline: "I build reliable web, mobile and AI-powered products end to end, from API design to the pixels people touch.",
   // TODO: confirm job title at Truckit.net.
   currently: { role: "Software Engineer", company: "Truckit.net", href: "https://www.truckit.net" },
 };
@@ -67,12 +67,17 @@ export const experience: Experience[] = [
     company: "Truckit.net",
     role: profile.currently.role,
     location: "Brisbane, QLD",
-    // TODO: confirm start date and add highlights from this role.
+    // TODO: confirm job title and start date.
     start: "Oct 2024",
     end: "Present",
-    summary: "Engineering on Truckit's online freight and transport marketplace.",
-    points: [],
-    stack: [],
+    summary: "Own the Truckit marketplace and provider app, leading AI-driven product innovation.",
+    points: [
+      "Conceived and built an AI-powered homepage that estimates item measurements from customer photos, then prefills the Get a Quote and Create Listing forms.",
+      "Look after the core marketplace, shipping new features end to end.",
+      "Own the provider app used by transport providers on the platform.",
+      "Work closely with Product, Operations, the COO and the CEO to shape and prioritise the roadmap.",
+    ],
+    stack: ["AI / Computer Vision", "Web", "Mobile"],
   },
   {
     company: "LifeShape Clinic",
@@ -128,6 +133,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "AI Photo-to-Quote",
+    context: "Truckit.net · My idea",
+    description:
+      "Customers upload photos and AI works out item measurements, then prefills the quote and listing forms. No tape measure, far less typing.",
+    tags: ["AI", "Computer Vision", "Marketplace"],
+    href: "https://www.truckit.net",
+  },
+  {
     title: "Eviole Patient Platform",
     context: "LifeShape Clinic",
     description:
@@ -162,13 +175,6 @@ export const projects: Project[] = [
     description: "A React Native app with an Express and MySQL API for tracking water intake, steps and wellbeing.",
     tags: ["React Native", "Expo", "Express", "MySQL"],
     href: "https://github.com/KishenLodhia/fitness-app",
-  },
-  {
-    title: "Weather App",
-    context: "Side project",
-    description: "A minimal Flutter weather app with location detection and live data from weatherapi.com.",
-    tags: ["Flutter", "Dart", "REST"],
-    href: "https://github.com/KishenLodhia/weather_app_flutter",
   },
 ];
 

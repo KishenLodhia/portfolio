@@ -5,8 +5,8 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { education, experience, highlights, profile, skills, socials } from "@/data/profile";
 
-const summary = `Software Engineer with 5+ years of full-stack experience across web, mobile and APIs, currently at
-${profile.currently.company}. Gold Medal graduate in Software Engineering and Master of IT (Computer Science) from QUT.
+const summary = `Software Engineer with 5+ years of full-stack experience across web, mobile and APIs. At
+${profile.currently.company} I own the marketplace and provider app and lead AI-driven features. Gold Medal graduate in Software Engineering and Master of IT (Computer Science) from QUT.
 Known for leading projects, working closely with cross-functional teams, and shipping software that measurably
 improves user experience and operational efficiency.`;
 
