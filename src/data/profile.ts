@@ -77,7 +77,7 @@ export const experience: Experience[] = [
       "Own the provider app used by transport providers on the platform.",
       "Work closely with Product, Operations, the COO and the CEO to shape and prioritise the roadmap.",
     ],
-    stack: ["AI / Computer Vision", "Web", "Mobile"],
+    stack: ["PHP", "Laravel", "MySQL", "Angular", "Flutter", "Dart", "Docker", "AWS", "Cursor"],
   },
   {
     company: "LifeShape Clinic",
@@ -137,7 +137,7 @@ export const projects: Project[] = [
     context: "Truckit.net · My idea",
     description:
       "Customers upload photos and AI works out item measurements, then prefills the quote and listing forms. No tape measure, far less typing.",
-    tags: ["AI", "Computer Vision", "Marketplace"],
+    tags: ["AI", "Computer Vision", "Laravel", "Angular"],
     href: "https://www.truckit.net",
   },
   {
@@ -180,12 +180,12 @@ export const projects: Project[] = [
 
 export const skills: { group: string; items: string[] }[] = [
   { group: "Languages", items: ["TypeScript", "JavaScript", "Python", "Dart", "PHP", "C#", "Java"] },
-  { group: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "HTML", "CSS"] },
+  { group: "Frontend", items: ["React", "Angular", "Next.js", "Tailwind CSS", "HTML", "CSS"] },
   { group: "Mobile", items: ["Flutter", "React Native", "Expo"] },
   { group: "Backend", items: ["Node.js", "Express", "FastAPI", "Laravel", "REST APIs"] },
-  { group: "Data & Cloud", items: ["MySQL", "MongoDB", "Firebase", "AWS", "Serverless"] },
+  { group: "Data & Cloud", items: ["MySQL", "MongoDB", "Firebase", "AWS", "Docker", "Serverless"] },
   { group: "ML", items: ["Hugging Face", "scikit-learn", "Pandas", "NumPy", "TensorFlow"] },
-  { group: "Practice", items: ["Cypress", "Git", "CI/CD", "Agile / Scrum", "Figma", "Jira"] },
+  { group: "Practice", items: ["Cursor", "Cypress", "Git", "CI/CD", "Agile / Scrum", "Figma", "Jira"] },
 ];
 
 export const education = [

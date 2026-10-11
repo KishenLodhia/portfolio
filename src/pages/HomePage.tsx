@@ -30,9 +30,9 @@ const CodeCard = () => (
       {"  "}role: <span className="text-brand">"{profile.currently.role}"</span>,{"\n"}
       {"  "}company: <span className="text-brand">"{profile.currently.company}"</span>,{"\n"}
       {"  "}based: <span className="text-brand">"Brisbane, AU"</span>,{"\n"}
-      {"  "}stack: [<span className="text-brand">"TypeScript"</span>, <span className="text-brand">"React"</span>,{"\n"}
+      {"  "}stack: [<span className="text-brand">"Laravel"</span>, <span className="text-brand">"Angular"</span>,{"\n"}
       {"          "}
-      <span className="text-brand">"Flutter"</span>, <span className="text-brand">"Node"</span>],{"\n"}
+      <span className="text-brand">"Flutter"</span>, <span className="text-brand">"AWS"</span>],{"\n"}
       {"  "}shipsTo: [<span className="text-brand">"web"</span>, <span className="text-brand">"mobile"</span>],
       {"\n"}
       {"}"};
