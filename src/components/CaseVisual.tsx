@@ -118,7 +118,45 @@ const EvioleVisual = () => (
       </div>
     </div>
     <div className="absolute right-[8%] top-[14%] hidden rounded-xl border bg-background/95 px-3 py-2 font-mono text-[10px] shadow-xl sm:block">
-      <span className="text-brand">PUT</span> /api/v2/partner/enrollments
+      <span className="text-brand">✓</span> Weekly check-in saved
+    </div>
+  </div>
+);
+
+// Staff back office: an enrollment hub with step progress and a partner sync badge.
+const EviolePlatformVisual = () => (
+  <div className="relative grid h-full place-items-center bg-gradient-to-br from-teal-600/20 via-transparent to-emerald-700/15 p-6">
+    <div className="w-full max-w-sm rounded-2xl border bg-background p-4 text-xs shadow-2xl">
+      <div className="flex items-center gap-2">
+        <img src={evioleLogo} alt="" className="h-6 w-6 rounded-md" />
+        <p className="font-medium">Enrollment hub</p>
+        <span className="ml-auto rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] text-emerald-700 dark:text-emerald-400">Active</span>
+      </div>
+      <div className="mt-4 grid grid-cols-3 gap-2 text-[10px]">
+        {[
+          ["Step", "6 of 12"],
+          ["Change", "−8.4 kg"],
+          ["Next", "Mon"],
+        ].map(([label, value]) => (
+          <div key={label} className="rounded-lg bg-secondary p-2">
+            <p className="text-muted-foreground">{label}</p>
+            <p className="mt-0.5 font-medium">{value}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 flex gap-1">
+        {Array.from({ length: 12 }, (_, step) => (
+          <span key={step} className={cn("h-1.5 flex-1 rounded-full", step < 6 ? "bg-brand" : "bg-secondary")} />
+        ))}
+      </div>
+      <ul className="mt-4 space-y-1.5 text-[10px] text-muted-foreground">
+        <li>● Member checked in · weight and photos</li>
+        <li>● Advanced to step 6 automatically</li>
+        <li>● Progress report generated for GP</li>
+      </ul>
+    </div>
+    <div className="absolute right-[8%] top-[12%] hidden rounded-xl border bg-background/95 px-3 py-2 font-mono text-[10px] shadow-xl sm:block">
+      <span className="text-brand">Partner API</span> · synced
     </div>
   </div>
 );
@@ -127,6 +165,7 @@ const visuals: Record<CaseStudy["visual"], () => React.JSX.Element> = {
   truckit: TruckitVisual,
   shreeji: ShreejiVisual,
   eviole: EvioleVisual,
+  "eviole-platform": EviolePlatformVisual,
 };
 
 const CaseVisual = ({ visual, className }: { visual: CaseStudy["visual"]; className?: string }) => {

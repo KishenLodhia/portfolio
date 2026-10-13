@@ -13,7 +13,7 @@ export type CaseStudy = {
   tagline: string;
   summary: string;
   // Which illustrated preview to render (see CaseVisual).
-  visual: "truckit" | "shreeji" | "eviole";
+  visual: "truckit" | "shreeji" | "eviole" | "eviole-platform";
   logo?: string;
   gallery?: { src: string; caption: string }[];
   stats: { value: string; label: string }[];
@@ -254,18 +254,16 @@ export const caseStudies: CaseStudy[] = [
     slug: "eviole",
     name: "Eviole",
     client: "LifeShape Clinic · Brisbane",
-    period: "2023 — 2026",
+    period: "2023 — 2024",
     role: "Lead engineer",
     tagline: "A digital program supporting patients on weight-loss medication.",
     summary:
-      "Eviole is LifeShape Clinic's online weight-management program. Members are enrolled in structured programs whose content unlocks as they progress, and they log their weight, measurements, photos and medication along the way. Over three years it grew from a WordPress portal and Flutter app into a Laravel platform with a staff back office and a versioned partner API.",
+      "Eviole is LifeShape Clinic's online weight-management program. I built the first generation of its patient experience: a Flutter mobile app, the WordPress portal and custom APIs behind it, and a secure integration with partner health systems, backed by an end-to-end test suite.",
     visual: "eviole",
     logo: evioleLogo,
     stats: [
-      { value: "60%", label: "Fewer system errors after the partner API" },
+      { value: "60%", label: "Fewer system errors after the Health Track API" },
       { value: "40%", label: "Faster testing with Cypress E2E" },
-      { value: "400+", label: "Automated tests on the v2 platform" },
-      { value: "140+", label: "Screens across member and staff apps" },
       { value: "20%", label: "Lower latency between app and portal" },
     ],
     parts: [
@@ -295,74 +293,224 @@ export const caseStudies: CaseStudy[] = [
         ],
         stack: ["PHP", "WordPress", "JavaScript", "MySQL", "Cypress"],
       },
+    ],
+    timeline: [
+      { date: "Jun 2023", text: "First commit on the Flutter app: login, profile and resources." },
+      { date: "Aug 2023", text: "Progress photos, measurement tracking and charts." },
+      { date: "Dec 2023", text: "Migrated to a new API layer and redesigned the UI." },
+      { date: "Mar 2024", text: "Added the Cypress E2E suite and moved the app onto production APIs." },
+    ],
+    links: [{ label: "Visit Eviole", href: "https://eviole.com.au" }],
+  },
+  {
+    slug: "eviole-platform",
+    name: "Eviole Platform",
+    client: "LifeShape Clinic · Brisbane",
+    period: "2026",
+    role: "Lead engineer, largely solo",
+    tagline: "A program platform for clinics, with a staff back office and partner API.",
+    summary:
+      "Eviole Platform runs structured weight-management programs for clinics. Members are enrolled in programs made of periods, content unlocks as they progress, and they log their weight, measurements, photos and medication. Clinic staff manage everything from a back office with clinical reporting and a rich content editor, and partner practice-management systems integrate through a versioned REST API. I designed and built it end to end, largely solo, on Laravel.",
+    visual: "eviole-platform",
+    logo: evioleLogo,
+    stats: [
+      { value: "270+", label: "Commits, designed and built largely solo" },
+      { value: "400+", label: "Automated tests" },
+      { value: "140+", label: "Screens across member and staff apps" },
+      { value: "45", label: "Database migrations" },
+    ],
+    parts: [
       {
-        title: "Eviole v2 platform and Partner API",
-        period: "2026",
-        body: "A new Laravel platform covering the member experience, an automated enrollment engine, a staff back office with a rich content editor, and a versioned API so partner practice-management systems can integrate directly.",
+        title: "Member experience",
+        body: "Members are enrolled in programs made of periods. Content unlocks as they move through each step, and everything they need sits on one dashboard.",
         groups: [
           {
-            title: "Member experience",
+            title: "Dashboard and modules",
             items: [
               "Dashboard showing the current program step and its content",
-              "Learning modules that unlock as members progress",
-              "Searchable library with category filters and step-based unlocking",
-              "Back navigation that remembers where an article was opened from",
-              "Weight, measurement, progress photo and medication tracking with charts",
-              "Secure, authorised delivery of documents and images",
+              "Switch between enrollments when a member is on more than one program",
+              "Learning modules scoped to each program, unlocking period by period",
+              "Custom plans tab for documents the care team adds for the member",
+              "Read-only access to modules and library once a program is complete",
             ],
           },
           {
-            title: "Enrollment engine",
+            title: "Library",
             items: [
-              "Scheduled, automatic progression through program steps",
-              "Staff can pause progression or override the next step date",
-              "Full event trail of every advance, override and completion",
-              "Completion and reopening rules that keep tracking available",
-              "Stalled enrollments resume automatically when a program is extended",
+              "Reference articles with multi-category filtering and debounced search",
+              "Articles visible to everyone, unlocked at a program step, or link-only",
+              "Period badges on articles that unlock later in the program",
+              "Back navigation that returns to the module or article it was opened from",
+              "Navigation context that survives refresh and open-in-new-tab",
             ],
           },
           {
-            title: "Staff back office",
+            title: "Tracking and progress",
             items: [
-              "Enrollment hub with progress, weight chart, documents and merged activity",
-              "Clinic-branded clinical progress report PDF for referring GPs",
-              "Staff can correct member tracking, with field-level auditing",
-              "User directory with invites, verification and welcome emails",
-              "Editors for programs, modules, library, FAQs, media and medication catalogue",
-              "In-console help guides, filtered by role, with contextual help tags",
-            ],
-          },
-          {
-            title: "Content editor (TipTap)",
-            items: [
-              "Guided article editor with live preview and a full formatting toolbar",
-              "Custom blocks: callouts, pull quotes, checklists and media players",
-              "Embedded library cards that never go stale when articles change",
-              "Autosave with save status in the top bar",
-              "One-click duplication of modules and articles as drafts",
-              "Server- and client-side sanitisation of all authored HTML",
-            ],
-          },
-          {
-            title: "Partner API and integrations",
-            items: [
-              "Versioned REST API with token auth, rate limiting and request logging",
-              "Partner-owned IDs, bulk updates, document upload and measurement export",
-              "OpenAPI documentation and token management for admins",
-              "Secured enquiry webhook from the marketing website",
-            ],
-          },
-          {
-            title: "Email, security and governance",
-            items: [
-              "Event-driven emails in the clinic's voice, with a searchable send log",
-              "Safeguards so dev and staging can never email real patients",
-              "Member, staff and admin roles enforced by middleware and policies",
-              "Health data on private storage with signed routes and audit trails",
+              "One check-in per program step: weight, body measurements and medication",
+              "Optional front and side progress photos",
+              "Medication and dose picked from a clinic-managed catalogue",
+              "Progress chart across the whole program",
+              "Documents, photos and tiles served through signed, authorised links",
             ],
           },
         ],
-        stack: ["Laravel 13", "PHP 8.3", "Inertia", "React", "TypeScript", "Tailwind 4", "shadcn", "TipTap", "Sanctum", "OpenAPI", "Laravel Cloud"],
+        stack: ["Laravel 13", "Inertia", "React", "TypeScript", "Tailwind 4", "shadcn", "Recharts"],
+      },
+      {
+        title: "Enrollment engine",
+        body: "The engine that moves members through their program automatically. Each step change runs on a schedule, and staff stay in control of it with a full audit trail.",
+        groups: [
+          {
+            title: "Progression",
+            items: [
+              "Scheduled job that advances due enrollments every minute",
+              "Each advance runs in its own locked transaction, on a single server",
+              "Configurable rollover time and timezone for when steps change",
+              "Staff can pause progression or override the next step date",
+              "Event trail of every advance, override and automatic completion",
+            ],
+          },
+          {
+            title: "Completion and recovery",
+            items: [
+              "Staff can complete an enrollment, or it completes when its end date passes",
+              "Clinic-managed enrollments complete after a full cycle on the final step",
+              "Completion locks learning content but keeps tracking and custom plans open",
+              "Reopening an enrollment restarts the final-step clock",
+              "Stalled enrollments resume automatically when a program gains more steps",
+              "Safety-net check on every scheduler run as well as on save",
+            ],
+          },
+        ],
+        stack: ["Laravel Scheduler", "MySQL", "Laravel Cloud"],
+      },
+      {
+        title: "Staff back office",
+        body: "A back office where clinic staff manage members, enrollments, content and reporting, with contextual help built into every area.",
+        groups: [
+          {
+            title: "Enrollment hub",
+            items: [
+              "One page per enrollment with an overview band",
+              "Current step, goal and latest weight, last check-in and next progression",
+              "Program steps, weight chart and documents side by side",
+              "Merged activity feed of member check-ins, staff edits and automated advances",
+              "Staff can create, correct or delete tracking with before-and-after auditing",
+            ],
+          },
+          {
+            title: "Clinical progress report",
+            items: [
+              "Clinic-branded PDF letter for a member's referring GP",
+              "Change from baseline, % of starting weight, lowest weight and weekly rate",
+              "BMI with its WHO category and a weight-trend chart",
+              "Girths plus waist-to-height and waist-to-hip ratios",
+              "Optional medication timeline, history, photos and clinician comments",
+              "Generated on demand and streamed for download, never stored",
+            ],
+          },
+          {
+            title: "Users and content management",
+            items: [
+              "User directory with inline filters",
+              "Account creation with welcome or set-password emails",
+              "Verification and invite actions",
+              "Editors for programs, modules, library, media and site settings",
+              "Drag-to-reorder FAQs, medication and dose catalogue, privacy policy",
+            ],
+          },
+          {
+            title: "Built-in help",
+            items: [
+              "A guide page for each area of the console, written in Markdown",
+              "Guides filtered by the viewer's role",
+              "Contextual help tags whose popover text is read from the guide itself",
+            ],
+          },
+        ],
+        stack: ["Laravel", "Inertia", "React", "TypeScript", "Base UI", "DomPDF", "Recharts"],
+      },
+      {
+        title: "Content editor",
+        body: "A guided TipTap editor so clinical and marketing staff can write rich, consistent articles and modules without touching code.",
+        groups: [
+          {
+            title: "Writing",
+            items: [
+              "Resizable Settings and Write layout with an edit/preview toggle",
+              "Full toolbar: tables, alignment, highlight, sub and superscript, YouTube",
+              "Custom blocks: callout, pull quote, checklist and section break",
+              "Embedded video, audio and document players",
+              "Variant-based styling so blocks stay on-brand",
+            ],
+          },
+          {
+            title: "Workflow and safety",
+            items: [
+              "Autosave after a short pause, including on published content",
+              "Save status in the top bar, with pending saves flushed before preview",
+              "Inline library cards edited in place, linked by stable ID so they never go stale",
+              "Right-click duplicate of any module or article as an unpublished draft",
+              "Server- and client-side sanitisation of all authored HTML",
+            ],
+          },
+        ],
+        stack: ["TipTap 3", "React", "TypeScript", "HTMLPurifier", "DOMPurify"],
+      },
+      {
+        title: "Partner API and integrations",
+        body: "A versioned REST API that lets partner practice-management systems sync members and enrollments and pull measurement data back, replacing manual double entry.",
+        groups: [
+          {
+            title: "Partner API",
+            items: [
+              "Two API versions running side by side",
+              "Token authentication with per-partner rate limits",
+              "Every request and response logged for support and auditing",
+              "Partner-owned external IDs for users and enrollments",
+              "Strict full and partial update semantics",
+              "Bulk current-period updates, document upload and measurement export",
+            ],
+          },
+          {
+            title: "Tooling and integrations",
+            items: [
+              "OpenAPI documentation, visible to admins only",
+              "Admins issue and revoke partner tokens from the console",
+              "Browsable partner request log",
+              "Secured enquiry webhook for the marketing website, with validation and rate limits",
+            ],
+          },
+        ],
+        stack: ["Laravel Sanctum", "REST", "OpenAPI", "Swagger", "Scramble"],
+      },
+      {
+        title: "Email, security and governance",
+        body: "Health data needs careful handling, so security, auditing and communication were designed in from the start rather than added later.",
+        groups: [
+          {
+            title: "Transactional email",
+            items: [
+              "Welcome, set-password, enrollment started, new content and new document emails",
+              "Written in the clinic's voice and signed with its trading name from settings",
+              "Every send logged as sent, blocked or failed, with tokens redacted",
+              "Send log browsable by staff and pruned automatically",
+              "Allow list that stops dev and staging from emailing real patients",
+            ],
+          },
+          {
+            title: "Security and governance",
+            items: [
+              "Member, staff and admin roles enforced by both middleware and policies",
+              "No public self-registration, and inactive users are signed out automatically",
+              "Health data on private storage, served only through signed routes",
+              "User audits, activity log and progression events as layered audit trails",
+              "Architecture notes, decision records, product ground truth and a domain glossary in the repo",
+            ],
+          },
+        ],
+        stack: ["Resend", "Spatie Permission", "Spatie Activity Log", "S3"],
       },
     ],
     highlights: [
@@ -379,16 +527,17 @@ export const caseStudies: CaseStudy[] = [
         body: "Embedded cards reference articles by stable ID, so titles, images and links are rebuilt at render time.",
       },
       {
+        title: "Navigation that remembers",
+        body: "Opening an article from a module or another article keeps its context, so Back always returns to the right place, even after a refresh.",
+      },
+      {
+        title: "Safe by default for patients",
+        body: "Non-production environments can't email real patients, and every send is logged with sensitive tokens redacted.",
+      },
+      {
         title: "Documented decisions",
         body: "Architecture notes, decision records and a domain glossary live alongside the code, with AI-assisted work run as staged spec, review and approval steps.",
       },
-    ],
-    timeline: [
-      { date: "Jun 2023", text: "First commit on the Flutter app: login, profile and resources." },
-      { date: "Aug 2023", text: "Progress photos, measurement tracking and charts." },
-      { date: "Dec 2023", text: "Migrated to a new API layer and redesigned the UI." },
-      { date: "Mar 2024", text: "Added the Cypress E2E suite and moved the app onto production APIs." },
-      { date: "2026", text: "Eviole v2 on Laravel with a staff back office and the Partner API." },
     ],
     links: [{ label: "Visit Eviole", href: "https://eviole.com.au" }],
   },
