@@ -94,14 +94,33 @@ const CaseStudyPage = () => {
               {part.period && <p className="font-mono text-xs text-muted-foreground">{part.period}</p>}
             </div>
             <p className="mt-4 max-w-3xl text-pretty leading-relaxed text-muted-foreground">{part.body}</p>
-            <ul className="mt-6 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
-              {part.features.map((feature) => (
-                <li key={feature} className="flex gap-2.5 text-sm">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+            {part.features && (
+              <ul className="mt-6 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
+                {part.features.map((feature) => (
+                  <li key={feature} className="flex gap-2.5 text-sm">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {part.groups && (
+              <div className="mt-8 grid gap-x-10 gap-y-8 md:grid-cols-2">
+                {part.groups.map((group) => (
+                  <div key={group.title}>
+                    <h3 className="mb-3 font-mono text-xs uppercase tracking-wider text-muted-foreground">{group.title}</h3>
+                    <ul className="space-y-2.5">
+                      {group.items.map((item) => (
+                        <li key={item} className="flex gap-2.5 text-sm">
+                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="mt-7 flex flex-wrap gap-1.5 border-t pt-6">
               {part.stack.map((tech) => (
                 <span key={tech} className="rounded-full bg-secondary px-2.5 py-1 font-mono text-xs">
@@ -112,6 +131,23 @@ const CaseStudyPage = () => {
           </Reveal>
         ))}
       </section>
+
+      {/* Engineering highlights */}
+      {study.highlights && (
+        <section className="pt-16">
+          <Reveal>
+            <p className="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-brand">Engineering highlights</p>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {study.highlights.map((highlight, highlightIndex) => (
+              <Reveal key={highlight.title} delay={(highlightIndex % 3) * 80} className="rounded-2xl border bg-card p-6">
+                <h3 className="font-semibold tracking-tight">{highlight.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{highlight.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Gallery */}
       {study.gallery && (
