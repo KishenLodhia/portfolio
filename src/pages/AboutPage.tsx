@@ -10,7 +10,7 @@ const principles = [
     title: "Start with the people",
     body: "I sit down with users and stakeholders before writing code, from CEOs and marketing teams to students and clinic patients.",
     example:
-      "Built Eviole around how the clinic team works, from emails in the clinic's own voice to a help guide for every screen.",
+      "Eviole helps people change their lives, so I built it around the members and clinic staff who use it every day.",
   },
   {
     title: "Ship the whole thing",
