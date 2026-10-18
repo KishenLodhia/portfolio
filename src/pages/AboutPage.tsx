@@ -9,7 +9,8 @@ const principles = [
   {
     title: "Start with the people",
     body: "I sit down with users and stakeholders before writing code, from CEOs and marketing teams to students and clinic patients.",
-    example: "[EVIOLE_EXAMPLE]",
+    example:
+      "Clinicians needed to update members' GPs, so Eviole produces a clinic-branded progress letter in one click, with weight trend, BMI and body measurements.",
   },
   {
     title: "Ship the whole thing",
