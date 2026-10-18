@@ -36,7 +36,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "truckit-ai-quote",
     name: "AI Photo-to-Quote",
-    client: "Truckit.net",
+    client: "Truckit",
     period: "2024 — Present",
     role: "Idea, product and engineering",
     tagline: "Snap a photo. Get a quote. No tape measure.",

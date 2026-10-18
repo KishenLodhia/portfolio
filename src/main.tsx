@@ -1,44 +1,18 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router";
-import { Analytics } from "@vercel/analytics/react";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router";
 import "./index.css";
-import { ThemeProvider } from "./components/theme-provider.tsx";
-import Navbar from "./components/Navbar.tsx";
-import Footer from "./components/Footer.tsx";
-import ScrollManager from "./components/ScrollManager.tsx";
-import HomePage from "./pages/HomePage.tsx";
-import AboutPage from "./pages/AboutPage.tsx";
-import ResumePage from "./pages/ResumePage.tsx";
-import PortfolioPage from "./pages/PortfolioPage.tsx";
-import RepoPage from "./pages/RepoPage.tsx";
-import NotFoundPage from "./pages/NotFoundPage.tsx";
-import CaseStudyPage from "./pages/CaseStudyPage.tsx";
+import App from "./App.tsx";
 
-createRoot(document.getElementById("root")!).render(
+const app = (
   <StrictMode>
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <BrowserRouter>
-        <ScrollManager />
-        <div className="flex min-h-dvh flex-col">
-          <Navbar />
-          <div className="flex-1">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/resume" element={<ResumePage />} />
-              <Route path="/work/:slug" element={<CaseStudyPage />} />
-              <Route path="/portfolio" element={<PortfolioPage />} />
-              <Route path="/portfolio/:repoName" element={<RepoPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </div>
-          <div className="print:hidden">
-            <Footer />
-          </div>
-        </div>
-      </BrowserRouter>
-      <Analytics />
-    </ThemeProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>
 );
+
+// Prerendered pages arrive with markup to hydrate; the SPA fallback (spa.html) arrives empty.
+const root = document.getElementById("root")!;
+if (root.hasChildNodes()) hydrateRoot(root, app);
+else createRoot(root).render(app);

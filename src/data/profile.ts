@@ -15,7 +15,7 @@ export const profile = {
   email: "kishan1999lodhia@gmail.com",
   github: "KishenLodhia",
   tagline: "I build reliable web, mobile and AI-powered products end to end, from API design to the pixels people touch.",
-  currently: { role: "Software Engineer, Marketplace & Apps", company: "Truckit.net", href: "https://www.truckit.net" },
+  currently: { role: "Software Engineer, Marketplace & Apps", company: "Truckit", href: "https://www.truckit.net" },
 };
 
 export const socials = [
@@ -39,18 +39,12 @@ export const about = [
   led the team that built the university's mobile app for 20,000 students. Since then I've consulted on CRM and
   government apps, built a patient platform at LifeShape Clinic, and finished a Master of IT (Computer Science) at QUT
   with two Dean's Excellence Awards.`,
-  `Today I work on quoting, payments and LLM features at Truckit. Outside work, I've designed, built and run two
-  production systems on my own: a healthtech platform with a partner API, and a point-of-sale system for my family's
-  jewellery store that keeps money and stock correct even with two tills running at once.`,
 ];
 
 export const interests = [
   { title: "Sport", body: "Badminton, table tennis and cricket." },
-  { title: "Outdoors", body: "Hiking and landscape photography." },
-  { title: "Quantum", body: "Reading about wave-particle duality and entanglement." },
-  { title: "Space", body: "Following exploration missions and launches." },
-  { title: "Cinema", body: "Films across every genre and era." },
   { title: "Community", body: "Treasurer of Queensland Soni Samaj." },
+  { title: "Curiosity", body: "Hiking, landscape photography, space launches, quantum physics and films." },
 ];
 
 export type Experience = {
@@ -68,7 +62,7 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    company: "Truckit.net",
+    company: "Truckit",
     role: profile.currently.role,
     location: "Milton, QLD",
     start: "Oct 2024",

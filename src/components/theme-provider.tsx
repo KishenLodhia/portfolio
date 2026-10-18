@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useSyncExternalStore } from "react";
 
 type Theme = "dark" | "light" | "system";
 
@@ -20,15 +20,26 @@ const initialState: ThemeProviderState = {
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
+const subscribe = (onChange: () => void) => {
+  window.addEventListener("storage", onChange);
+  return () => window.removeEventListener("storage", onChange);
+};
+
 export function ThemeProvider({
   children,
   defaultTheme = "system",
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
+  // The saved choice reads as null on the server and during hydration, so prerendered
+  // HTML and the first client render match; React then re-renders with the stored value.
+  const saved = useSyncExternalStore(
+    subscribe,
+    () => localStorage.getItem(storageKey) as Theme | null,
+    () => null,
   );
+  const [chosen, setChosen] = useState<Theme | null>(null);
+  const theme = chosen ?? saved ?? defaultTheme;
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -52,7 +63,7 @@ export function ThemeProvider({
     theme,
     setTheme: (theme: Theme) => {
       localStorage.setItem(storageKey, theme);
-      setTheme(theme);
+      setChosen(theme);
     },
   };
 

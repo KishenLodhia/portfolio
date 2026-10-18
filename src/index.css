@@ -178,6 +178,17 @@
     opacity: 1;
     transform: none;
   }
+  /* Short page-load entrance for hero text; it never starts invisible. */
+  .hero-in {
+    animation: hero-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0.4;
+    transform: translateY(6px);
+  }
 }
 
 /* Highlights lightbox: the photo grows out of its tile and settles back on close. */
@@ -196,6 +207,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-in {
+    animation: none;
+  }
   .reveal {
     opacity: 1;
     transform: none;
