@@ -19,7 +19,8 @@ const principles = [
   {
     title: "Make it dependable",
     body: "Automated end-to-end tests, secure integrations and measurable improvements over clever code.",
-    example: "[EXAMPLE_3]",
+    example:
+      "Errors in Shreeji POS go to Sentry, where an AI agent triages new issues and drafts fixes for me to review.",
   },
 ];
 
