@@ -32,7 +32,7 @@ export const stats = [
 ];
 
 export const about = [
-  `I'm a Brisbane-based Software Engineer who likes turning messy business problems into software that feels simple.
+  `I'm a Brisbane-based software engineer who likes turning messy business problems into software that feels simple.
   I've worked across the whole stack, designing APIs, building web portals and shipping Flutter and React Native apps,
   usually as the person who sits between engineering, product and the people who use the thing.`,
   `I started out at The University of the South Pacific, where I graduated with a Gold Medal in Software Engineering and

@@ -9,8 +9,7 @@ const principles = [
   {
     title: "Start with the people",
     body: "I sit down with users and stakeholders before writing code, from CEOs and marketing teams to students and clinic patients.",
-    example:
-      "The Eviole platform has helped change people's lives, so I built it around the members and clinic staff who use it every day.",
+    example: "[EVIOLE_EXAMPLE]",
   },
   {
     title: "Ship the whole thing",
@@ -63,16 +62,17 @@ const AboutPage = () => (
           end to end.
         </h1>
         <div className="text-muted-foreground mt-10 space-y-6 text-lg leading-relaxed">
-          {about.map((paragraph, index) => (
-            <p key={index} className="text-pretty">
-              {paragraph}
-            </p>
-          ))}
+          <p className="text-pretty">{about[0]}</p>
           <p className="text-pretty">
             Today I work at {profile.currently.company} on quoting, payments and
             LLM features for a freight marketplace, where my work has halved the
             time it takes to get a quote and brought in 30% more listings.
           </p>
+          {about.slice(1).map((paragraph, index) => (
+            <p key={index} className="text-pretty">
+              {paragraph}
+            </p>
+          ))}
           <p className="text-pretty">
             Outside work, I've designed, built and run two production systems on
             my own:{" "}
@@ -91,13 +91,13 @@ const AboutPage = () => (
 
       <div className="hero-in space-y-4 md:mt-24">
         <img
-          src="/kishen.png"
+          src="/kishen-headshot.jpg"
           alt="Kishen Lodhia"
-          width={500}
-          height={500}
+          width={640}
+          height={800}
           fetchPriority="high"
           decoding="async"
-          className="bg-card aspect-square w-full rounded-2xl border object-cover"
+          className="bg-card aspect-[4/5] w-full rounded-2xl border object-cover"
         />
         <div className="bg-card space-y-6 rounded-2xl border p-6 text-sm">
           <div>

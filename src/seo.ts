@@ -3,10 +3,10 @@ import { caseStudies } from "@/data/caseStudies";
 
 export const SITE_URL = "https://kishen-lodhia.vercel.app";
 const OG_IMAGE = {
-  url: `${SITE_URL}/kishen.png`,
-  width: 500,
-  height: 500,
-  alt: "Kishen Lodhia",
+  url: `${SITE_URL}/og.png`,
+  width: 1200,
+  height: 630,
+  alt: "Kishen Lodhia, full-stack engineer in Brisbane",
 };
 
 export type PageMeta = { path: string; title: string; description: string };
@@ -62,7 +62,7 @@ export const renderHead = ({ path, title, description }: PageMeta) => {
     ["property", "og:image:width", String(OG_IMAGE.width)],
     ["property", "og:image:height", String(OG_IMAGE.height)],
     ["property", "og:image:alt", OG_IMAGE.alt],
-    ["name", "twitter:card", "summary"],
+    ["name", "twitter:card", "summary_large_image"],
     ["name", "twitter:title", title],
     ["name", "twitter:description", description],
     ["name", "twitter:image", OG_IMAGE.url],
