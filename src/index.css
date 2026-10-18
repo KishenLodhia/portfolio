@@ -180,6 +180,21 @@
   }
 }
 
+/* Highlights lightbox: the photo grows out of its tile and settles back on close. */
+::view-transition-group(highlight-media) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+::view-transition-old(highlight-media),
+::view-transition-new(highlight-media) {
+  height: 100%;
+  object-fit: cover;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
