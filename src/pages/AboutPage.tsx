@@ -70,8 +70,8 @@ const AboutPage = () => (
           ))}
           <p className="text-pretty">
             Today I work at {profile.currently.company} on quoting, payments and
-            LLM features for a freight marketplace, where my work has [METRIC_1]
-            and [METRIC_2].
+            LLM features for a freight marketplace, where my work has halved the
+            time it takes to get a quote and brought in 30% more listings.
           </p>
           <p className="text-pretty">
             Outside work, I've designed, built and run two production systems on
