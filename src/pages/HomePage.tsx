@@ -229,6 +229,15 @@ const HomePage = () => {
                       {job.role} <span className="text-muted-foreground">· {job.company}</span>
                     </h3>
                     <p className="mt-1 text-sm text-muted-foreground">{job.summary ?? job.points[0]}</p>
+                    {job.caseStudy && (
+                      <Link
+                        to={`/work/${job.caseStudy}`}
+                        className="group mt-2 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground print:hidden"
+                      >
+                        Read the case study
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </Link>
+                    )}
                   </div>
                   <p className="text-sm text-muted-foreground md:text-right">{job.location}</p>
                 </div>

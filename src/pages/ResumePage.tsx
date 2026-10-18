@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowUpRight, Mail, MapPin, Printer, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, MapPin, Printer, X } from "lucide-react";
 import { Dialog } from "radix-ui";
 import PageShell from "@/components/PageShell";
 import Reveal from "@/components/Reveal";
@@ -86,6 +86,15 @@ const ResumePage = () => (
                     </span>
                   ))}
                 </div>
+              )}
+              {job.caseStudy && (
+                <Link
+                  to={`/work/${job.caseStudy}`}
+                  className="group mt-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground print:hidden"
+                >
+                  Read the case study
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </Link>
               )}
             </Reveal>
           </li>

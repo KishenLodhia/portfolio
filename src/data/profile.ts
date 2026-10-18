@@ -62,6 +62,8 @@ export type Experience = {
   summary?: string;
   points: string[];
   stack: string[];
+  // Slug of the matching entry in caseStudies, linked from the experience lists.
+  caseStudy?: string;
 };
 
 export const experience: Experience[] = [
@@ -82,6 +84,7 @@ export const experience: Experience[] = [
       "Build features and fixes in the Truckit mobile app with Flutter, along with the backend changes they need.",
     ],
     stack: ["PHP", "Laravel", "MySQL", "Angular", "Flutter", "Dart", "Docker", "AWS", "Cursor"],
+    caseStudy: "truckit-ai-quote",
   },
   {
     company: "Eviole",
@@ -98,6 +101,7 @@ export const experience: Experience[] = [
       "Automated program progression with a scheduled job that handles pauses, stalled enrollments and completions, and stopped it from running twice at once.",
     ],
     stack: ["Laravel 13", "Inertia", "React", "TypeScript", "Tailwind", "MySQL", "Laravel Cloud"],
+    caseStudy: "eviole-platform",
   },
   {
     company: "Shreeji Jewellers",
@@ -114,6 +118,7 @@ export const experience: Experience[] = [
       "Moved the store's website off Shopify to Next.js on Vercel. Opening hours and notices update from the admin system.",
     ],
     stack: ["Laravel 13", "React 19", "TypeScript", "Inertia", "Tailwind", "MySQL", "Laravel Cloud", "Next.js", "Vercel"],
+    caseStudy: "shreeji-jewellers",
   },
   {
     company: "LifeShape Clinic",
@@ -126,6 +131,7 @@ export const experience: Experience[] = [
       "Led the Health Track integration, connecting the clinic's systems to their medical platform through a secure REST API.",
     ],
     stack: ["JavaScript", "PHP", "WordPress", "Flutter", "Dart", "REST", "Cypress"],
+    caseStudy: "eviole",
   },
   {
     company: "Solutions Studio",
