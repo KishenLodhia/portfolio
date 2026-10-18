@@ -9,12 +9,14 @@ const principles = [
   {
     title: "Start with the people",
     body: "I sit down with users and stakeholders before writing code, from CEOs and marketing teams to students and clinic patients.",
-    example: "[EXAMPLE_1]",
+    example:
+      "Built Eviole around how the clinic team works, from emails in the clinic's own voice to a help guide for every screen.",
   },
   {
     title: "Ship the whole thing",
     body: "APIs, web portals and mobile apps. I'm comfortable owning a feature from the database through to the UI.",
-    example: "[EXAMPLE_2]",
+    example:
+      "Built Shreeji POS solo, from the database and till logic to the iPad screens and the website.",
   },
   {
     title: "Make it dependable",
