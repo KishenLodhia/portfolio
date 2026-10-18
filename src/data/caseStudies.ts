@@ -44,9 +44,9 @@ export const caseStudies: CaseStudy[] = [
       "Truckit is an online marketplace connecting people who need things moved with transport providers. I came up with an AI-powered homepage that looks at customer photos, works out the item's measurements, and prefills the Get a Quote and Create Listing forms, turning the slowest part of booking a move into a single upload.",
     visual: "truckit",
     stats: [
-      { value: "Photo → form", label: "Measurements inferred from images" },
-      { value: "2 flows", label: "Get a Quote and Create Listing prefilled" },
-      { value: "Owner", label: "Marketplace and provider app" },
+      { value: "2× faster", label: "Time to get a quote" },
+      { value: "+30%", label: "More listings" },
+      { value: "Photo → form", label: "Quote details filled in by an LLM" },
     ],
     parts: [
       {
@@ -61,13 +61,13 @@ export const caseStudies: CaseStudy[] = [
         stack: ["Laravel", "PHP", "Angular", "MySQL", "AWS", "Docker"],
       },
       {
-        title: "Marketplace and provider app",
-        body: "Beyond the AI work, I look after Truckit's core marketplace and the provider app that transport providers use day to day, shipping features in close collaboration with Product, Operations, the COO and the CEO.",
+        title: "Marketplace, payments and app",
+        body: "Beyond the AI work, I work mostly on the backend across Laravel and an older custom PHP framework, with Angular and Flutter changes when needed. I also run deployments and go-lives, review the team's code, and write and scope tickets for junior developers.",
         features: [
-          "End-to-end feature delivery across the marketplace",
-          "Ownership of the Flutter provider app",
-          "Roadmap shaping with Product, Ops and leadership",
-          "AI-assisted development workflow with Cursor",
+          "Instant Rates on a new pricing microservice, so customers see live prices",
+          "New 3D Secure (3DS) payment flows and production payment fixes",
+          "Features and fixes in the Flutter mobile app",
+          "Releases, code review and ticketing for junior developers",
         ],
         stack: ["Flutter", "Dart", "Laravel", "Angular", "Cursor"],
       },
@@ -90,10 +90,10 @@ export const caseStudies: CaseStudy[] = [
       { src: shreejiCollections, caption: "Collection pages for 22ct gold and diamond jewellery." },
     ],
     stats: [
-      { value: "250+", label: "Commits on the POS, all mine" },
-      { value: "300+", label: "Automated tests, run in CI" },
-      { value: "39", label: "Screens across till and back office" },
-      { value: "15+", label: "PDF reports for managers" },
+      { value: "270+", label: "Commits on the POS, all mine" },
+      { value: "440+", label: "Automated tests, run in CI" },
+      { value: "34", label: "Screens across till and back office" },
+      { value: "15", label: "Reports on screen, in PDF and Excel" },
     ],
     parts: [
       {
@@ -107,9 +107,9 @@ export const caseStudies: CaseStudy[] = [
               "One scrolling checkout: customer, items, staff, payment, review and on-screen signatures",
               "Tagged stock, new stock, legacy tags registered on the spot, and repairs",
               "Price-lock step: every tag price is confirmed before checkout unlocks",
-              "Split tender across shop-defined payment methods, validated to the cent",
+              "Split tender across shop-defined methods, with M-Paisa references recorded",
               "Inclusive VAT with Tourist VAT Refund Scheme flagging",
-              "Trade-in credit for old gold",
+              "Trade-in credit for old gold, on sales and laybuys",
               "Walk-in customers matched by phone number to avoid duplicates",
               "Unfinished sales survive a refresh or iPad rotation",
               "Invoices print straight to AirPrint from iPad Safari",
@@ -123,7 +123,7 @@ export const caseStudies: CaseStudy[] = [
               "Completes automatically into a sale when the balance reaches zero",
               "Swap pieces in or out, with fees and refunds worked out for staff",
               "Extend pay-off dates with history kept, or cancel piece by piece",
-              "Laybuy book with status views, overdue filter and live search",
+              "One laybuy list with status badges, overdue tab and wider search",
             ],
           },
           {
@@ -146,25 +146,34 @@ export const caseStudies: CaseStudy[] = [
             ],
           },
           {
+            title: "Buying old gold",
+            items: [
+              "Buy old gold for cash, with a signed A5 receipt",
+              "Seller's photo ID read by Gemini, or typed in if it fails",
+              "ID photos visible to managers only, with every view audited",
+            ],
+          },
+          {
             title: "Manager dashboard and reports",
             items: [
               "Needs-attention queue: overdue laybuys, balances due soon, today's refunds",
               "Sales compared with a usual day and past periods, written as plain sentences",
               "Takings by method, product mix, staff sales, best customers and slow stock",
-              "15+ PDF reports with Excel export",
+              "Gold and silver market prices, with the last price kept if the feed drops",
+              "15 reports on screen, with matching print, PDF and Excel",
             ],
           },
           {
             title: "Documents, search and help",
             items: [
-              "Branded A5 invoices, statements and receipts with signatures",
+              "Branded A5 invoices and receipts with signatures",
               "⌘K command palette that understands phrases like \"laybuy statement\"",
               "In-app user guide and staff cheat sheet",
               "Managers edit the website's hours, holidays, banner and contact details",
             ],
           },
         ],
-        stack: ["Laravel 13", "PHP 8.3", "Inertia", "React 19", "TypeScript", "Tailwind 4", "shadcn/Radix", "MySQL", "S3", "Laravel Cloud", "Pest", "GitHub Actions"],
+        stack: ["Laravel 13", "PHP 8.3", "Inertia", "React 19", "TypeScript", "Tailwind 4", "shadcn/Base UI", "MySQL", "S3", "Laravel Cloud", "Gemini (Laravel AI)", "Pest", "Playwright", "Sentry", "GitHub Actions"],
       },
       {
         title: "Public website",
@@ -234,11 +243,19 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "Role-based access",
-        body: "Staff run the till and laybuys. Managers also get the dashboard, reports, catalogue, staff, settings and logs.",
+        body: "Staff run the till and laybuys. Managers also get the dashboard, reports, catalogue, staff, settings, logs and sellers' ID photos. Access is checked on the server, not just hidden in the menu.",
       },
       {
         title: "The shop's own language",
         body: "A domain glossary and product spec live in the repo, so the UI uses the words the shop actually uses.",
+      },
+      {
+        title: "Every copy of a report agrees",
+        body: "Screen, print, PDF and Excel are built from one report document, so the figures can't differ between them.",
+      },
+      {
+        title: "Tested in a real browser",
+        body: "Browser tests drive the till, laybuys and Buy gold in headless Chromium on desktop and iPad, and check every screen opens without errors.",
       },
     ],
     timeline: [
@@ -247,6 +264,7 @@ export const caseStudies: CaseStudy[] = [
       { date: "Apr 2025", text: "Began building the point-of-sale and back-office system." },
       { date: "Mar 2026", text: "Biggest month of development, with 70 commits." },
       { date: "Oct 2026", text: "Built the new Next.js website, live on Vercel, to replace Shopify." },
+      { date: "Oct 2026", text: "Added buying old gold, with AI reading the seller's ID, and on-screen reports." },
     ],
     links: [{ label: "Visit the website", href: "https://shreeji-web.vercel.app" }],
   },
@@ -255,16 +273,16 @@ export const caseStudies: CaseStudy[] = [
     name: "Eviole",
     client: "LifeShape Clinic · Brisbane",
     period: "2023 — 2024",
-    role: "Lead engineer",
+    role: "Software engineer",
     tagline: "A digital program supporting patients on weight-loss medication.",
     summary:
       "Eviole is LifeShape Clinic's online weight-management program. I built the first generation of its patient experience: a Flutter mobile app, the WordPress portal and custom APIs behind it, and a secure integration with partner health systems, backed by an end-to-end test suite.",
     visual: "eviole",
     logo: evioleLogo,
     stats: [
-      { value: "60%", label: "Fewer system errors after the Health Track API" },
-      { value: "40%", label: "Faster testing with Cypress E2E" },
-      { value: "20%", label: "Lower latency between app and portal" },
+      { value: "Web + app", label: "Patient portal and Flutter app, built from scratch" },
+      { value: "Health Track", label: "Secure REST integration I led" },
+      { value: "Cypress", label: "End-to-end tests for login, profile and tracking" },
     ],
     parts: [
       {
@@ -307,17 +325,17 @@ export const caseStudies: CaseStudy[] = [
     name: "Eviole Platform",
     client: "LifeShape Clinic · Brisbane",
     period: "2026",
-    role: "Lead engineer, largely solo",
+    role: "Sole developer, part-time contract",
     tagline: "A program platform for clinics, with a staff back office and partner API.",
     summary:
-      "Eviole Platform runs structured weight-management programs for clinics. Members are enrolled in programs made of periods, content unlocks as they progress, and they log their weight, measurements, photos and medication. Clinic staff manage everything from a back office with clinical reporting and a rich content editor, and partner practice-management systems integrate through a versioned REST API. I designed and built it end to end, largely solo, on Laravel.",
+      "Eviole Platform runs structured weight-management programs for clinics. Members are enrolled in programs made of periods, content unlocks as they progress, and they log their weight, measurements, photos and medication. Clinic staff manage everything from a back office with clinical reporting and a rich content editor, and partner practice-management systems integrate through a versioned REST API. I designed and built it end to end, solo, on Laravel.",
     visual: "eviole-platform",
     logo: evioleLogo,
     stats: [
-      { value: "270+", label: "Commits, designed and built largely solo" },
+      { value: "270+", label: "Commits, designed and built solo" },
       { value: "400+", label: "Automated tests" },
-      { value: "140+", label: "Screens across member and staff apps" },
-      { value: "45", label: "Database migrations" },
+      { value: "50+", label: "Screens across member and staff apps" },
+      { value: "50", label: "Database migrations" },
     ],
     parts: [
       {
@@ -351,7 +369,7 @@ export const caseStudies: CaseStudy[] = [
               "Optional front and side progress photos",
               "Medication and dose picked from a clinic-managed catalogue",
               "Progress chart across the whole program",
-              "Documents, photos and tiles served through signed, authorised links",
+              "Documents and progress photos served through signed, authorised links",
             ],
           },
         ],
@@ -367,7 +385,9 @@ export const caseStudies: CaseStudy[] = [
               "Scheduled job that advances due enrollments every minute",
               "Each advance runs in its own locked transaction, on a single server",
               "Configurable rollover time and timezone for when steps change",
-              "Staff can pause progression or override the next step date",
+              "Each step runs a full cycle, even when starting mid-program",
+              "Changing a program's cycle or rollover time reschedules upcoming steps",
+              "Staff can pause progression or set a one-off next step date",
               "Event trail of every advance, override and automatic completion",
             ],
           },
@@ -380,6 +400,7 @@ export const caseStudies: CaseStudy[] = [
               "Reopening an enrollment restarts the final-step clock",
               "Stalled enrollments resume automatically when a program gains more steps",
               "Safety-net check on every scheduler run as well as on save",
+              "Live enrollments moved to start at Week 1, without re-emailing members",
             ],
           },
         ],
@@ -429,7 +450,7 @@ export const caseStudies: CaseStudy[] = [
             ],
           },
         ],
-        stack: ["Laravel", "Inertia", "React", "TypeScript", "Base UI", "DomPDF", "Recharts"],
+        stack: ["Laravel", "Inertia", "React", "TypeScript", "Radix UI", "DomPDF", "Recharts"],
       },
       {
         title: "Content editor",
@@ -505,7 +526,7 @@ export const caseStudies: CaseStudy[] = [
               "Member, staff and admin roles enforced by both middleware and policies",
               "No public self-registration, and inactive users are signed out automatically",
               "Health data on private storage, served only through signed routes",
-              "User audits, activity log and progression events as layered audit trails",
+              "Activity log and progression events as layered audit trails",
               "Architecture notes, decision records, product ground truth and a domain glossary in the repo",
             ],
           },

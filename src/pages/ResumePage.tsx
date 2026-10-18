@@ -7,10 +7,11 @@ import SectionHeading from "@/components/SectionHeading";
 import { education, experience, highlights, profile, skills, socials } from "@/data/profile";
 import { caseStudies } from "@/data/caseStudies";
 
-const summary = `Software Engineer with 5+ years of full-stack experience across web, mobile and APIs. At
-${profile.currently.company} I own the marketplace and provider app and lead AI-driven features. Gold Medal graduate in Software Engineering and Master of IT (Computer Science) from QUT.
-Known for leading projects, working closely with cross-functional teams, and shipping software that measurably
-improves user experience and operational efficiency.`;
+const summary = `Backend-focused software engineer, building production software since 2021. Mostly Laravel and PHP, with
+React, TypeScript, Angular and Flutter on the front end and mobile. At Truckit, I work on quoting, payments and LLM
+features for a freight marketplace, and run releases, code reviews and ticketing for junior developers. Outside work, I
+designed, built and run two production systems on my own: a healthtech platform with a partner API, and a POS system
+that keeps money and stock correct even with two tills running at once.`;
 
 const ResumePage = () => (
   <PageShell title="Resume">
@@ -27,6 +28,7 @@ const ResumePage = () => (
           <a href={`mailto:${profile.email}`} className="flex items-center gap-1.5 hover:text-foreground">
             <Mail className="h-4 w-4" /> {profile.email}
           </a>
+          <span>Full working rights</span>
           {socials
             .filter((social) => social.name !== "Instagram")
             .map((social) => (
